@@ -1,5 +1,6 @@
 body {
     background-color: #008870;
+
 }
 .card {
     background-color: #008870;
@@ -98,6 +99,9 @@ body {
     
 }
 
+.navbar{
+    z-index: 1;
+}
 
 
 
