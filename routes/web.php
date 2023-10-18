@@ -32,3 +32,8 @@ Route::get('/test', function () {
 Route::get('/user', function () {
     return view('dashboard.user.index');
 });
+
+
+Route::get('/layouts', function () {
+    return view('layouts.app');
+});
