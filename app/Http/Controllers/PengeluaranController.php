@@ -6,6 +6,7 @@ use App\Http\Requests\PengeluaranRequest;
 use App\Models\Pengeluaran;
 use App\Models\JenisPengeluaran;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 
 class PengeluaranController extends Controller
@@ -33,10 +34,11 @@ class PengeluaranController extends Controller
             if ($path = $request->file('dokumentasi_pengeluaran')) {
                 $path = $path->storePublicly('', 'public');
                 $data['dokumentasi_pengeluaran'] = $path;
+                // dd($data);
             }
 
-
             $pengeluaran = Pengeluaran::query()->create($data);
+            
     
             if (!$pengeluaran) {
                 return response()->json([
@@ -49,6 +51,12 @@ class PengeluaranController extends Controller
             ], 201);
         }
     }
+
+    
+    // public function download(Request $request)
+    // {
+    //     return Storage::download(storage_path("public/".$this->{File::PATH}));
+    // }
 
     public function delete(int $id): JsonResponse
     {

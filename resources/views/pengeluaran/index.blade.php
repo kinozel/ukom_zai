@@ -1,3 +1,4 @@
+@php use Illuminate\Support\Facades\Storage;use Illuminate\Support\Facades\URL; @endphp
 @extends('layout.layout')
 @section('title','Manajemen Pengeluaran')
 @section('content')
@@ -40,13 +41,13 @@
                                     <label class="d-block">Dokumentasi Pengeluaran : </label>
                                         <div class="row d-flex align-items-center">
                                             <div class="col-3">
-                                                <label for="fileUpload"
+                                                <label for="dokumUpload"
                                                        class="btn p-1 w-100 btn-outline-success form-control">Upload
                                                     Dokumentasi</label>
-                                                <input type="file" accept=".png, .jpg, .jpeg" name="dokuementasi_pengeluaran" id="fileUpload" class="d-none">
+                                                <input type="file" accept=".png, .jpg, .jpeg" name="dokumentasi_pengeluaran" id="dokumUpload" class="d-none">
                                             </div>
                                             <div class="col p-0">
-                                                <p class="fileName m-0 d-inline-block"></p>
+                                                <p class="dokumName m-0 d-inline-block"></p>
                                             </div>
                                         </div>
                                     @csrf
@@ -93,15 +94,11 @@
                                 <td class="col-1">{{$pgl->tanggal_pengeluaran}}</td>
                                 <td class="col-1">
                                     <div class="w-100 d-flex flex-column">
-                                        @if($pgl->file)
-                                            <a class="btn btn-primary mb-1"
+                                            {{-- <a class="btn btn-primary mb-1"
                                                href="{{url("pengeluaran?path=$pgl->file", ['download'])}}">Download</a>
                                             <a class="btn btn-danger del-file" title="Delete file" idPengeluaran="{{$pgl->id}}">
-                                                <i class="bi bi-trash3"></i>File</a>
-                                        @else
-                                            <p>No File</p>
-                                        @endif
-
+                                                <i class="bi bi-trash3"></i>Delete File</a> --}}
+                                               <img src="{{asset('/storage/'.$pgl->dokumentasi_pengeluaran)}}" width="100vw" alt="">
                                     </div>
                                 </td>
                                 <td col-2>
@@ -144,6 +141,16 @@
                                                           <label>Jumlah Pengeluaran</label>
                                                      <input type="number" min="1000" name="jumlah_pengeluaran" id="jumlahKeluar"
                                                               class="form-control mb-3" value="{{$pgl->jumlah_pengeluaran}}">
+                                                              <label class="d-block">File : </label>
+                                                    <div class="row d-flex align-items-center">
+                                                        <div class="col-3">
+                                                            <label
+                                                                class="btn p-1 w-100 btn-outline-success form-control">
+                                                                <span>Upload File</span>
+                                                                <input type="file" name="dokumentasi_pengeluaran" class="d-none"
+                                                                       id="dokumUpload">
+                                                            </label>
+                                                        </div>
 
                                                    @csrf
                                                </div>
@@ -174,21 +181,21 @@
     @section('footer')
     <script>
         function clearText() {
-            $(`.fileName`).text('');
-            $('#fileUpload').val('');
+            $(`.dokumName`).text('');
+            $('#dokumUpload').val('');
         }
     </script>
     <script type="module">
         $('.table').DataTable();
         $('input[type=file]').on('change', function () {
             const fileName = $(this).val().replace(/.*(\/|\\)/, '');
-            $(`.fileName`).text(fileName);
+            $(`.dokumName`).text(fileName);
         })
 
     $('#tambahkeluar-form').on('submit', function (e) {
             e.preventDefault();
             let data = new FormData(e.target);
-            console.log(Object.fromEntries(data))
+            // console.log(Object.fromEntries(data))
             axios.post('/pengeluaran/tambah', data, {
                 'Content-Type': 'multipart/form-data'
             })

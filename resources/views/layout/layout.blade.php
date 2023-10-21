@@ -98,7 +98,7 @@
         <div class="sidebar">
             <div class="header-side">
                 <div class="logo">
-                    <a href="#">
+                    <a href="{{url('/dashboard')}}">
                         <img class="masjid" src="mosque2.png"
                             style="margin-left: 90px; margin-top:60px; width: 80px; margin-bottom:10px;">
                     </a>

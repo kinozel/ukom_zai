@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('id_jenis_pengeluaran')->nullable(false);
             $table->string('jumlah_pengeluaran',20)->nullable(false);
             $table->datetime('tanggal_pengeluaran')->default('2023-01-01 00:00:00')->nullable(false);
-            $table->text('dokumentasi_pengeluaran')->nullable(true);
+            $table->string('dokumentasi_pengeluaran')->nullable(true);
 
             $table->foreign('id_jenis_pengeluaran')->on('jenis_pengeluaran')->references('id');
         });
