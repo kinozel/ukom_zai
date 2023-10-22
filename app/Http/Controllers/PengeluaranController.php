@@ -51,13 +51,6 @@ class PengeluaranController extends Controller
             ], 201);
         }
     }
-
-    
-    // public function download(Request $request)
-    // {
-    //     return Storage::download(storage_path("public/".$this->{File::PATH}));
-    // }
-
     public function delete(int $id): JsonResponse
     {
         $pengeluaran = Pengeluaran::query()->find($id)->delete();

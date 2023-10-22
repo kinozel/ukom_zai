@@ -1,5 +1,7 @@
 <?php
 
+
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\JenisPemasukanController;
 use App\Http\Controllers\JenisPengeluaranController;
 use App\Http\Controllers\PemasukanController;
@@ -20,9 +22,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/dashboard');
 });
 
+
+Route::get('/login', [AuthController::class, 'index'])->name('login');
+Route::post('/login', [AuthController::class, 'login']);
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::controller(DashboardController::class)->group(function () {
     Route::get('/dashboard', 'index');

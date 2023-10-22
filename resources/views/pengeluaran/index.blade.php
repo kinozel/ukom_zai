@@ -94,10 +94,6 @@
                                 <td class="col-1">{{$pgl->tanggal_pengeluaran}}</td>
                                 <td class="col-1">
                                     <div class="w-100 d-flex flex-column">
-                                            {{-- <a class="btn btn-primary mb-1"
-                                               href="{{url("pengeluaran?path=$pgl->file", ['download'])}}">Download</a>
-                                            <a class="btn btn-danger del-file" title="Delete file" idPengeluaran="{{$pgl->id}}">
-                                                <i class="bi bi-trash3"></i>Delete File</a> --}}
                                                <img src="{{asset('/storage/'.$pgl->dokumentasi_pengeluaran)}}" width="100vw" alt="">
                                     </div>
                                 </td>
@@ -141,16 +137,18 @@
                                                           <label>Jumlah Pengeluaran</label>
                                                      <input type="number" min="1000" name="jumlah_pengeluaran" id="jumlahKeluar"
                                                               class="form-control mb-3" value="{{$pgl->jumlah_pengeluaran}}">
-                                                              <label class="d-block">File : </label>
-                                                    <div class="row d-flex align-items-center">
-                                                        <div class="col-3">
-                                                            <label
-                                                                class="btn p-1 w-100 btn-outline-success form-control">
-                                                                <span>Upload File</span>
-                                                                <input type="file" name="dokumentasi_pengeluaran" class="d-none"
-                                                                       id="dokumUpload">
-                                                            </label>
-                                                        </div>
+                                                              <label class="d-block">Dokumentasi Pengeluaran : </label>
+                                                              <div class="row d-flex align-items-center">
+                                                                  <div class="col-3">
+                                                                      <label for="dokumUpload"
+                                                                             class="btn p-1 w-100 btn-outline-success form-control">Upload
+                                                                          Dokumentasi</label>
+                                                                      <input type="file" accept=".png, .jpg, .jpeg" name="dokumentasi_pengeluaran" id="dokumUpload" class="d-none">
+                                                                  </div>
+                                                                  <div class="col p-0">
+                                                                      <p class="dokumName m-0 d-inline-block"></p>
+                                                                  </div>
+                                                              </div>
 
                                                    @csrf
                                                </div>
@@ -222,13 +220,12 @@
                 confirmButtonColor: 'red'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    //dilakukan proses hapus
+                    //proses hapus dieksekusi
                     axios.delete(`/pengeluaran/${idPengeluaran}/hapus`)
                         .then(function (response) {
                             console.log(response);
                             if (response.data.success) {
                                 swal.fire('Berhasil di hapus!', '', 'success').then(function () {
-                                    //Refresh Halaman
                                     location.reload();
                                 });
                             } else {
@@ -236,7 +233,6 @@
                             }
                         }).catch(function () {
                         swal.fire('Data gagal di hapus!', '', 'error').then(function () {
-                            //Refresh Halaman
                             location.reload();
                         });
                     });
