@@ -22,7 +22,7 @@ class UserFactory extends Factory
         return [
             'username' => fake()->userName(),
             'password' => Hash::make('rahasia'), // password
-            'role' => fake()->randomElement(['Super Admin', 'Dkm', 'Jamaah'])
+            'role' => fake()->randomElement(['SuperAdmin', 'Dkm', 'Jamaah'])
         ];
     }
 

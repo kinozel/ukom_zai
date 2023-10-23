@@ -30,10 +30,17 @@ Route::get('/login', [AuthController::class, 'index'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
+
+Route::prefix('/dashboard')->middleware('auth')->group(function () {
+
 Route::controller(DashboardController::class)->group(function () {
-    Route::get('/dashboard', 'index');
+    Route::get('/', [DashboardController::class, 'index']);
+
+    
+});
 
 });
+
 
 Route::controller(PemasukanController::class)->group(function () {
     Route::get('/pemasukan', 'index');

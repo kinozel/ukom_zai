@@ -94,55 +94,18 @@
 </head>
 
 <body>
-    <div class="container">
-        <div class="sidebar">
-            <div class="header-side">
-                <div class="logo">
-                    <a href="{{url('/dashboard')}}">
-                        <img class="masjid" src="mosque2.png"
-                            style="margin-left: 90px; margin-top:60px; width: 80px; margin-bottom:10px;">
-                    </a>
-                </div>
-                <div class="brand">
-                    <h2 style="font-family: Fugaz One; color:white; margin-left:60px;">ADZ-ZIKRU</h2>
-                </div>
-            </div>
-            <div class="main" style="margin-top:30px;color:#BCBCBCC9;"> Menu
-                <div class="list-content">
-                    <a href="#">
-                        <span class="text1" style="color:white; font-size: 15px;">Dashboard</span>
-                    </a>
-                </div>
-                <div class="list-content">
-                    <a href="#">
-                        <span class="text1" style="color:white; font-size: 15px;">Media</span>
-                    </a>
-                </div>
-                <div class="list-content">
-                    <a href="#">
-                        <span class="text1 " style="color:white; font-size: 15px;">Pemasukan</span>
-                    </a>
-                </div>
-                <div class="list-content">
-                    <a href="#">
-                        <span class="text1" style="color: white; font-size: 15px;">Pengeluaran</span>
-                    </a>
-                </div>
-
-            </div>
-
             <div class="navbar" style="margin-left:285px; margin-top: -335px; width: 80.3vw; height: 12vh; box-shadow: 0px 4px 10px black; background-color: rgba(189, 189, 189, 0.4); border-radius: 0px 0px 0px 15px; ">
                 
                 <div class="col-3" style="margin-top: 20px; margin-left:30px;">
-                        <a href="#"><span style="font-size: 25px;color: #BCBCBCC9;">Home / </span></a>
-                        <a href="#"><span style="font-size: 25px;color: white;"> Dashboard</span></a>
                 </div style>  
                 <div class="col-3">
-                <span style="font-size: 15px;color: black; margin-left:320px; margin-bottom:100px"> Halo!</span>
-                    <a class="btn logout btn-danger" style="margin-left: 370px; margin-top:-30px;" href="{{ route('logout')}}">{{ __('Logout') }}</a>
+                <span style="font-size: 15px;color: black; margin-left:330px;"> Halo!</span>
+
+                <h1 class="m-auto mx-2"><img src="" alt=""></h1>
+
                 </div>      
-                <div class="mt-3">
-                <span style="font-size: 30px;color: #FBAF01; margin-left:-274px; padding-bottom: -100px;" > Admin</span>
+                <div>
+
                 </div>      
             </div>
             
@@ -157,7 +120,7 @@
 @yield('footer')
 <script>
     window.setTimeout(function () {
-        $(".alert").fadeTo(500, 0).slideUp(500, function () {
+        $(".alert").fadeTo(1000, 0).slideUp(1000, function () {
             $(this).remove();
         });
     }, 3000);
