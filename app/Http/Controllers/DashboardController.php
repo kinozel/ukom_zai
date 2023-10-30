@@ -14,6 +14,7 @@ class DashboardController extends Controller
         $data = [
             'jenis_pemasukan' => JenisPemasukan::query()->count(),
             'pemasukan' => Pemasukan::query()->count(),
+            'pemasukaN'=> Pemasukan::with('jenis')->orderByDesc('tanggal_pemasukan')->get(),            
             'jenis_pengeluaran' => JenisPengeluaran::query()->count(),
             'pengeluaran' => Pengeluaran::query()->count(),
             'log' => Log::query()->count(),

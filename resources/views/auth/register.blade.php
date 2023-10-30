@@ -1,5 +1,5 @@
 @extends('layout.app')
-@section('title', 'Login')
+@section('title', 'Register')
 @section('content')
     <section class="vh-80 vw-10">
   
@@ -18,7 +18,7 @@
                     <div class="col-md-6">
                         <div class="card-body">
                         <form action="">
-                        <h5 class="card-title text-center custom-login-text-2">LOGIN</h5>
+                        <h5 class="card-title text-center custom-login-text-2">REGISTER</h5>
 
                         @csrf
                         <!-- Email input -->
@@ -35,16 +35,21 @@
                                    required/>
                         </div>
 
+                            <!-- Password input -->
+                        <div class="form-outline mb-4">
+                        <input type="text" id="role" class="form-control form-control-lg custom-text-input" name="role" required hidden value="jamaah"/>
+                        </div>
+
                         <div class="text-danger errors">
                             <p class="err-message"></p>
                         </div>
                         @csrf
 
                         <!-- Submit button -->
-                        <button class="custom-login-button"  type="submit">Login</button>
+                        <button class="custom-login-button" type="submit">register</button>
                         <div class="custom-register-text">
-                            Belum punya akun?
-                         <span>  <a href="{{url('/register')}}">Daftar</a></span>
+                            Wes nduwe akun?
+                         <span>  <a href="{{url('/login')}}">Login lur</a></span>
                         </div>
                   
                         </form>
@@ -63,23 +68,26 @@
             e.preventDefault();
             let username = $('#username').val();
             let password = $('#password').val();
+            let role = $('#role').val();
+
 
             await axios({
                 method: 'post',
-                url: 'http://localhost:8000/login',
+                url: 'http://localhost:8000/Register',
                 data: {
                     username,
-                    password
+                    password,
+                    role
                 }
             }).then(async () => {
                 await swal.fire({
-                    title: 'Login berhasil!',
-                    text: 'Redirecting to dashboard...',
+                    title: 'Register berhasil!',
+                    text: 'Redirecting to Login...',
                     icon: 'success',
                     timer: 1000,
                     showConfirmButton: false
                 })
-                window.location = '/dashboard'
+                window.location = '/login'
                 console.log('success')
             }).catch(({response}) => {
                 if (!$('.err-message').text()) {

@@ -6,7 +6,7 @@
     </div>
     <div class="row justify-content-center" style="margin-left: -200px">
         <div class="col-md">
-            <div class="card">
+            <div class="card" style="width: 75vw">
                 <div class="card-body">
                     <table class="table table-bordered table-hovered DataTable" style="width: 72vw;">
                         <thead>

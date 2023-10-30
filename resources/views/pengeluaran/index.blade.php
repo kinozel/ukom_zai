@@ -67,7 +67,7 @@
 
 
             <div class="card mt-2">
-                <div class="card-body">
+                <div class="card-body" style="width: 75vw">
                     <table class="table table-bordered table-hovered DataTable" style="width: 72vw">
                         <thead>
                             <tr>

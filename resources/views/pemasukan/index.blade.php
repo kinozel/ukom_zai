@@ -64,7 +64,7 @@
             </div>
 
 
-            <div class="card mt-2">
+            <div class="card mt-2" style="width: 75vw">
                 <div class="card-body">
                     <table class="table table-bordered table-hovered DataTable" style="width: 72vw">
                         <thead>
