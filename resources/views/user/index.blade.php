@@ -1,5 +1,5 @@
 @extends('layout.layout')
-@section('title','Jenis Pengeluaran')
+@section('title','Manajemen User ')
 @section('content')
 <div class="container" style="margin-left: -200px; margin-top:100px; width: 100vw;">
     <div class="row justify-content-center ">
@@ -16,15 +16,25 @@
                <div class="modal-dialog modal-dialog-centered">
                    <div class="modal-content">
                        <div class="modal-header">
-                           <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah Jenis Pengeluaran</h1>
+                           <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah User</h1>
                        </div>
                        <div class="modal-body">
-                        <form id="tambah-jenis-pengeluaran-form">
+                        <form id="tambah-user-form">
                             <div class="form-group">
-                                <label>Jenis Pengeluaran</label>
-                                <input placeholder="Keperluan" type="text" class="form-control mb-3"
-                                       name="jenis_pengeluaran"
+                                <label>Username</label>
+                                <input placeholder="Username" type="text" class="form-control mb-3"
+                                       name="username"
                                        required/>
+                                       <label>Password</label>
+                                <input placeholder="Password" type="Password" class="form-control mb-3"
+                                       name="password"
+                                       required/>
+                                       <label>Role</label>
+                                       <select name="role" class="form-select mb-3" required>
+                                        <option selected value="jamaah">jamaah</option>
+                                        <option value="dkm">dkm</option>
+                                        <option value="superadmin">superadmin</option>
+                                    </select>
                                 @csrf
                             </div>
                         </form>
@@ -33,7 +43,7 @@
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
                             Cancel
                         </button>
-                        <button type="submit" class="btn btn-primary" form="tambah-jenis-pengeluaran-form">Tambah</button>
+                        <button type="submit" class="btn btn-primary" form="tambah-user-form">Tambah</button>
                     </div>
                    </div>
                </div>
@@ -43,52 +53,67 @@
                 <table class="table table-bordered table-hovered DataTable" style="width: 72vw">
                     <thead>
                     <tr>
-                        <th>ID</th>
-                        <th>Jenis Pengeluaran</th>
+                        <th>Username</th>
+                        <th>Password</th>
+                        <th>Role</th>
                         <th>Action</th>
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($jenis_pengeluaran as $jpl)
-                        <tr idJS="{{$jpl->id}}">
-                            <td class="col-1">{{$jpl->id}}</td>
-                            <td>{{$jpl->jenis_pengeluaran}}</td>
+                    @foreach($user as $jpl)
+                        <tr idJS="{{$jpl->username}}">
+                            <td class="col-1">{{$jpl->username}}</td>
+                            <td>{{$jpl->password}}</td>
+                            <td>{{$jpl->role}}</td>
+
                             <td class="col-2">
                                 <!-- Button trigger edit modal -->
                                 <button type="button" class="editBtn btn btn-warning" data-bs-toggle="modal"
-                                        data-bs-target="#edit-modal-{{$jpl->id}}" idJS="{{$jpl->id}}">
+                                        data-bs-target="#edit-modal-{{$jpl->username}}" idJS="{{$jpl->username}}">
                                     Edit
                                 </button>
                                 <button class="hapusBtn btn btn-danger text-white">Hapus</button>
                             </td>
                         </tr>
 
-                      <div class="modal fade" id="edit-modal-{{$jpl->id}}" tabindex="-1"
+                      <div class="modal fade" id="edit-modal-{{$jpl->username}}" tabindex="-1"
                              aria-labelledby="exampleModalLabel"
                              aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Jenis Pengeluaran</h1>
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Edit User</h1>
                                     </div>
                                     <div class="modal-body">
-                                        <form id="edit-jpl-form-{{$jpl->id}}">
-                                            <div class="form-group">
-                                                <label>Jenis Pengeluaran</label>
-                                                <input placeholder="example" type="text" class="form-control mb-3"
-                                                       name="jenis_pengeluaran"
-                                                       value="{{$jpl->jenis_pengeluaran}}"
-                                                       required/>
-                                                @csrf
-                                            </div>
-                                        </form>
+                                    <form id="edit-jpl-form-{{$jpl->username}}">
+    <div class="form-group">
+        <label>Username</label>
+        <input placeholder="Username" type="text" class="form-control mb-3"
+               name="username"
+               value="{{$jpl->username}}"
+               required/>
+        <label>Password</label>
+        <input placeholder="Password" type="password" class="form-control mb-3"
+               name="password"
+               value="{{$jpl->password}}"
+               required/>
+        <label>Role</label>
+        <select name="role" class="form-select mb-3" required>
+            @foreach(['jamaah', 'dkm', 'superadmin'] as $role)
+                <option value="{{$role}}" {{ $jpl->role == $role ? 'selected' : '' }}>{{$role}}</option>
+            @endforeach
+        </select>
+        @csrf
+    </div>
+</form>
+
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
                                             Cancel
                                         </button>
                                         <button type="submit" class="btn btn-warning edit-btn"
-                                                form="edit-jpl-form-{{$jpl->id}}">
+                                                form="edit-jpl-form-{{$jpl->username}}">
                                             Edit
                                         </button>
                                     </div>
@@ -108,10 +133,10 @@
 @section('footer')
 <script type="module">
     $('.table').DataTable();
-    $('#tambah-jenis-pengeluaran-form').on('submit', function (e) {
+    $('#tambah-user-form').on('submit', function (e) {
             e.preventDefault();
             let data = new FormData(e.target);
-            axios.post('/jenis_pengeluaran/tambah', Object.fromEntries(data))
+            axios.post('/user/tambah', Object.fromEntries(data))
                 .then(() => {
                     $('#tambah-jenis-pengeluaran-modal').css('display', 'none')
                     swal.fire('Berhasil tambah data!', '', 'success').then(function () {
@@ -135,7 +160,7 @@
             }).then((result) => {
                 if (result.isConfirmed) {
                     //dilakukan proses hapus
-                    axios.delete(`/jenis_pengeluaran/${idJS}/hapus`)
+                    axios.delete(`/user/${idJS}/hapus`)
                         .then(function (response) {
                             console.log(response);
                             if (response.data.success) {
@@ -162,7 +187,7 @@
             $(`#edit-jpl-form-${idJS}`).on('submit', function (e) {
                 e.preventDefault();
                 let data = Object.fromEntries(new FormData(e.target));
-                axios.post(`/jenis_pengeluaran/${idJS}/edit`, data)
+                axios.post(`/user/${idJS}/edit`, data)
                     .then(() => {
                         $(`#edit-modal-${idJS}`).css('display', 'none')
                         swal.fire('Berhasil edit data!', '', 'success').then(function () {

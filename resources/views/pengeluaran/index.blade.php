@@ -1,6 +1,6 @@
 @php use Illuminate\Support\Facades\Storage;use Illuminate\Support\Facades\URL; @endphp
 @extends('layout.layout')
-@section('title','Manajemen Pengeluaran')
+@section('title','Manajemen User')
 @section('content')
 <div class="container" style="margin-left: -200px; margin-top:100px; width: 100vw;">
     <div class="row justify-content-center ">
@@ -66,7 +66,7 @@
             </div>
 
 
-            <div class="card mt-2">
+            <div class="card mt-2" style="width:75vw">
                 <div class="card-body" style="width: 75vw">
                     <table class="table table-bordered table-hovered DataTable" style="width: 72vw">
                         <thead>

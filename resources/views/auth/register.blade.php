@@ -21,11 +21,17 @@
                         <h5 class="card-title text-center custom-login-text-2">REGISTER</h5>
 
                         @csrf
-                        <!-- Email input -->
-                        <div class="form-outline mb-4">
+                          <!-- Username input -->
+                          <div class="form-outline mb-4">
                             <label class="form-label custom-username-label" for="username">Username</label>
                             <input type="text" id="username" class="form-control form-control-lg custom-text-input" name="username"
-                                   required autocomplete="username"/>
+                                   required />
+                        </div>
+                        <!-- Nama input -->
+                        <div class="form-outline mb-4">
+                            <label class="form-label custom-username-label" for="nama">Nama</label>
+                            <input type="text" id="nama" class="form-control form-control-lg custom-text-input" name="nama"
+                                   required />
                         </div>
 
                         <!-- Password input -->
@@ -35,7 +41,7 @@
                                    required/>
                         </div>
 
-                            <!-- Password input -->
+                            <!-- Role input -->
                         <div class="form-outline mb-4">
                         <input type="text" id="role" class="form-control form-control-lg custom-text-input" name="role" required hidden value="jamaah"/>
                         </div>
@@ -68,12 +74,13 @@
             e.preventDefault();
             let username = $('#username').val();
             let password = $('#password').val();
+            let nama = $('#nama').val();
             let role = $('#role').val();
 
 
             await axios({
                 method: 'post',
-                url: 'http://localhost:8000/Register',
+                url: 'http://localhost:8000/register',
                 data: {
                     username,
                     password,

@@ -6,6 +6,7 @@ use App\Models\Log;
 use App\Models\Pengeluaran;
 use App\Models\JenisPemasukan;
 use App\Models\JenisPengeluaran;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -18,6 +19,7 @@ class DashboardController extends Controller
             'jenis_pengeluaran' => JenisPengeluaran::query()->count(),
             'pengeluaran' => Pengeluaran::query()->count(),
             'log' => Log::query()->count(),
+            'user' => User::query()->count()
         ];
 
         return view('dashboard.index', $data);

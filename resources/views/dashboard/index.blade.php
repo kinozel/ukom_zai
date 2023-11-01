@@ -45,7 +45,7 @@
     </div>
 
     <div class="row mt-5">
-        <div class="col-3" style="margin-left:120px;">
+        <div class="col-3" style="margin-left:-40px;">
             <a href="{{url('/pengeluaran')}}" class="text-decoration-none">
                 <div class="card bg-c-green"
                     style="width:20vw;background: linear-gradient(45deg,#FFB64D,#ffcb80);">
@@ -65,6 +65,18 @@
                         <h1 class="text-right"><i class="bi bi-envelope-open-fill"></i><span
                                 class="f-right">{{$log}}</span></h1>
                         <h2>Log Aktivitas</h2>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-3" style="margin-left:50px;">
+            <a href="{{url('/user')}}" class="text-decoration-none">
+                <div class="card bg-c-green"
+                    style="width:20vw;background: linear-gradient(45deg,#FFB64D,#ffcb80);">
+                    <div class="card-body text-white">
+                        <h1 class="text-right"><i class="bi bi-envelope-open-fill"></i><span
+                                class="f-right">{{$user}}</span></h1>
+                        <h2>Manajemen User</h2>
                     </div>
                 </div>
             </a>

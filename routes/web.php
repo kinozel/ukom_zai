@@ -2,6 +2,7 @@
 
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Controller;
 use App\Http\Controllers\JenisPemasukanController;
 use App\Http\Controllers\JenisPengeluaranController;
 use App\Http\Controllers\PemasukanController;
@@ -9,6 +10,8 @@ use App\Http\Controllers\PengeluaranController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LogController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\UserController;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,8 +28,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return redirect('/dashboard');
 });
+Route::get('/layout', [Controller::class, 'index']);
+
+
 
 Route::get('/register', [RegisterController::class, 'index'])->name('register');
+Route::post('/register', [Registered::class, 'register']);
+
 
 Route::get('/login', [AuthController::class, 'index'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
@@ -57,6 +65,14 @@ Route::controller(PengeluaranController::class)->group(function () {
     Route::post('/pengeluaran/{id}/edit', 'update');
     Route::get('/pengeluaran/download', 'download');
     Route::delete('/pengeluaran/{id}/hapus', 'delete');
+
+});
+
+Route::controller(UserController::class)->group(function () {
+    Route::get('/user', 'index');
+    Route::post('/user/tambah', 'store');
+    Route::post('/user/{id}/edit', 'update');
+    Route::delete('/user/{id}/hapus', 'delete');
 
 });
 
