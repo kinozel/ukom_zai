@@ -1,6 +1,6 @@
 @php use Illuminate\Support\Facades\Storage;use Illuminate\Support\Facades\URL; @endphp
 @extends('layout.layout')
-@section('title','Manajemen User')
+@section('title','Pengeluaran')
 @section('content')
 <div class="container" style="margin-left: -200px; margin-top:100px; width: 100vw;">
     <div class="row justify-content-center ">
@@ -92,12 +92,12 @@
                                 <td class="col-1">{{$pgl->jenis_pengeluaran->jenis_pengeluaran}}</td>
                                 <td class="col-2">{{$pgl->jumlah_pengeluaran}}</td>
                                 <td class="col-1">{{$pgl->tanggal_pengeluaran}}</td>
-                                <td class="col-1">
+                                <td class="col-5">
                                     <div class="w-100 d-flex flex-column">
                                                <img src="{{asset('/storage/'.$pgl->dokumentasi_pengeluaran)}}" width="100vw" alt="">
                                     </div>
                                 </td>
-                                <td col-2>
+                                <td col->
                                     <button type="button" class="editBtn btn btn-warning" data-bs-toggle="modal"
                                         data-bs-target="#edit-modal-{{$pgl->id}}" idPengeluaran="{{$pgl->id}}">
                                         Edit

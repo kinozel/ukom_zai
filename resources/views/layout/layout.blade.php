@@ -28,16 +28,18 @@
         }
 
         body {
+            /* margin-top: -5.5%; */
             background-color: #008870;
             font-family: Fredoka;
-            height: 100vh;
+            height: 100vh   ;
+            width: 100vw;
         }
 
-        .container1 {
+        /* .container1 {
             display: flex;
             min-height: 100vh;
-            margin-left: -12px;
-        }
+            margin-left: 12px;
+        } */
 
         .sidebar {
             background-color: rgba(189, 189, 189, 0.4);
@@ -45,44 +47,45 @@
             width: 260px;
         }
         .container {
-            width: 100vw;
+            width: 100%;
+            margin-top: 5%;
         }
 
-        .main1{
+        /* .main{
             margin-left: 20px;
         }
 
         .main a span {
             margin-left: 30px;
-        }
+        } */
 
-        .text1 span {
+        /* .text1 span {
             font-family: Fredoka;
             text-decoration: none;
-        }
+        } */
 
-        .navbar {
+        /* .navbar {
             width: 100px;
             color: transparent;
             margin-top: -350px
-        }
+        } */
 
-        .list_content span,
+        /* .list_content span,
         a {
             text-decoration: none;
             color: #FBAF01;
             cursor: pointer;
-        }
+        } */
 
-        .menu {
+        /* .menu {
             position: absolute;
             left: 280px;
             background-color: rgba(189, 189, 189, 0.4);
             border-radius: 0px 0px 4px 5px;
             box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.50);
-        }
+        } */
 
-        .menu span {
+        /* .menu span {
             font-size: 24px;
             font-family: 'Fredoka';
             font-weight: 400;
@@ -90,76 +93,67 @@
             margin-left: 20px;
             margin-bottom: 20px;
 
-        }
+        } */
 
         .menu a {
             color: rgba(188, 188, 188, 0.79);
             text-decoration: none;
         }
 
+        .sam-sidebar{
+            background-color: rgba(189, 189, 189, 0.4);
+            box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.50);
+            text-decoration: none;
+            
+
+        }
+        .sam-tulisan{
+            color: #ffffff;
+            font-family: Fugaz One;
+            text-decoration: none;
+        }
+
+        .sam-navbar{
+            border-radius: 0px 0px 0px 10px;
+            background-color: rgba(189, 189, 189, 0.4);
+
+            box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.50);
+        }
+        .sam-btn{
+            box-shadow: 0px 4px 3px 5px rgba(0, 0, 0, 0.60); border-radius: 10px
+        }
+
     </style>
 </head>
-
 <body>
-    <div class="container1">
-        <div class="sidebar">
-            <div class="header-side">
-                <div class="logo">
-                    <a href="{{url('/dashboard')}}">
-                        <img class="masjid" src="mosque2.png"
-                            style="margin-left: 90px; margin-top:60px; width: 80px; margin-bottom:10px;">
-                    </a>
-                </div>
-                <div class="brand">
-                    <h2 style="font-family: Fugaz One; color:white; margin-left:60px;">ADZ-ZIKRU</h2>
-                </div>
-                </div>
-                <div class="main1" style="margin-top:30px;color:#BCBCBCC9;"> Menu
-                    <div class="list-content">
-                        <a href="#">
-                            <span class="text1" style="color:white; font-size: 15px;">Dashboard</span>
-                        </a>
-                    </div>
-                    <div class="list-content">
-                        <a href="#">
-                            <span class="text1" style="color:white; font-size: 15px;">Media</span>
-                        </a>
-                    </div>
-                    <div class="list-content">
-                        <a href="#">
-                            <span class="text1 " style="color:white; font-size: 15px;">Pemasukan</span>
-                        </a>
-                    </div>
-                    <div class="list-content">
-                        <a href="#">
-                            <span class="text1" style="color: white; font-size: 15px;">Pengeluaran</span>
-                        </a>
-                    </div>
+    
 
-                </div>
+<div class="w3-sidebar w3-bar-block sam-sidebar w3-center" style="width:15%">
+<div>
+<img style="margin-top:30%; width:30%; height:30%;" src="mosque2.png">
+<h3  class="sam-tulisan w3-margin-top">ADZ-ZIKRU</h3>
+</div>
+<div   ><h5 style="color: rgba(188.06, 188.06, 188.06, 0.79); margin-right:50%; margin-top:15%;">Menu</h5></div>
 
-            <div class="navbar" style="margin-left:285px; margin-top: -335px; width: 83.8vw; height: 12vh; box-shadow: 0px 4px 10px black; background-color: rgba(189, 189, 189, 0.4); border-radius: 0px 0px 0px 15px; ">
-                
-                <div class="col-3" style="margin-top: 20px; margin-left:30px;">
-                        <a href="#"><span style="font-size: 25px;color: #BCBCBCC9;">Home / </span></a>
-                        <a href="#"><span style="font-size: 25px;color: white;"> @yield('title')</span></a>
-                </div style>  
-                <div class="col-3">
-                <span style="font-size: 15px;color: black; margin-left:500px; margin-bottom:100px"> Halo!</span>
-                    <a class="btn logout btn-danger " style="margin-left: 666px; margin-top:-30px;" href="{{ route('logout')}}">{{ __('Logout') }}</a>
-                </div>      
-                <div class="mt-3">
-                <span style="font-size: 30px;color: #FBAF01; margin-left:-290px; padding-bottom: -100px;" > {{Auth::user()->username}}</span>
-                </div>      
-            </div>
-            
-            
+  <a href="#" class="w3-bar-item sam-tulisan"><h5>Dashboard</h5></a>
+  <a href="#" class="w3-bar-item sam-tulisan"><h5>Pemasukan</h5></a>
+  <a href="#" class="w3-bar-item sam-tulisan"><h5>Pengeluaran</h5></a>
+</div>
+<div class="w3-bar w3-right sam-navbar" style="width: 84%; height:10%;">
+  <a  class="w3-bar-item sam-tulisan" style="color: rgba(188.06, 188.06, 188.06, 0.79); margin-top:1.5%; margin-left:2%;"><h2>Home</h2></a>
+  <a class="w3-bar-item sam-tulisan" style="color: white; margin-top:1.5%; margin-left:-1.5%;"><h2>/ @yield('title')</h2></a>
+  <a  class="w3-bar-item btn btn-danger w3-right sam-btn" style="margin-right: 2%; margin-top:1.5%;" href="{{ route('logout')}}">{{ __('Logout') }}</a>
 
-            <main class="container" style="margin-left:500px; margin-top:100px;">
+  <span style="color: #FBAF01; margin-top:1.5%;" class="w3-bar-item w3-right" ><h1> {{Auth::user()->username}}</h1></span>
+  
+  <span  class="w3-bar-item w3-right" style="margin-top:1%; margin-right:-4%;">Halo!</span>
+
+</div>
+
+<main style="margin-left:550px; display:flex;">
         {{-- @include('layouts.flash-message') --}}
              @yield('content')
             </main>
-</div>
 
 @yield('footer')
 <script>
@@ -169,5 +163,7 @@
         });
     }, 3000);
 </script>
+
 </body>
+
 </html>

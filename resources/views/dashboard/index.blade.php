@@ -84,7 +84,7 @@
     </div>
 
 
-    <div class="row" style="margin-top:100px; margin-left: -150px">
+    <div class="row" style="margin-top:100px; margin-left: -200px">
         <div class="col">
         <div class="card mt-2" style="width:75vw;">
                 <div class="card-body">
