@@ -20,10 +20,16 @@ class PengeluaranController extends Controller
             'pengeluaran'=> Pengeluaran::with('jenis_pengeluaran')->orderByDesc('tanggal_pengeluaran')->get(),
             'jenis_pengeluaran'=> JenisPengeluaran::all(),
         ];
-
-        // return $data;
-
         return view('pengeluaran.index', $data);
+    }
+
+    public function cetakPengeluaran()
+    {
+        $data = [
+            'pengeluaran'=> Pengeluaran::with('jenis_pengeluaran')->orderByDesc('tanggal_pengeluaran')->get(),
+            'jenis_pengeluaran'=> JenisPengeluaran::all(),
+        ];
+        return view('pengeluaran.cetak', $data);
     }
 
     public function store(PengeluaranRequest $request)

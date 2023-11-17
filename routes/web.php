@@ -25,6 +25,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return redirect('/dashboard');
 });
+// Route::get('/home', function () {
+//     return redirect('/dashboard');
+// });
 
 Route::get('/register', [RegisterController::class, 'index'])->name('register');
 
@@ -35,17 +38,24 @@ Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::prefix('/dashboard')->middleware('auth')->group(function () {
 
-Route::controller(DashboardController::class)->group(function () {
     Route::get('/', [DashboardController::class, 'index']);
+    Route::middleware(['role:SuperAdmin', 'Dkm'])->group(function () {
 
-    
+        Route::controller(PengeluaranController::class)->group(function () {
+            Route::get('/pengeluaran', 'index');
+            Route::post('/pengeluaran/tambah', 'store');
+            Route::post('/pengeluaran/{id}/edit', 'update');
+            Route::get('/pengeluaran/cetak', 'cetakPengeluaran');
+            Route::delete('/pengeluaran/{id}/hapus', 'delete');
+        });
+    });
 });
 
-});
 
 
 Route::controller(PemasukanController::class)->group(function () {
     Route::get('/pemasukan', 'index');
+    Route::get('/pemasukan/cetakpdf', 'cetakPdf');
     Route::post('/pemasukan/tambah', 'store');
     Route::post('/pemasukan/{id}/edit', 'update');
     Route::delete('/pemasukan/{id}/hapus', 'delete');
@@ -55,16 +65,15 @@ Route::controller(PengeluaranController::class)->group(function () {
     Route::get('/pengeluaran', 'index');
     Route::post('/pengeluaran/tambah', 'store');
     Route::post('/pengeluaran/{id}/edit', 'update');
-    Route::get('/pengeluaran/download', 'download');
+    Route::get('/pengeluaran/cetak', 'cetakPengeluaran');
     Route::delete('/pengeluaran/{id}/hapus', 'delete');
-
 });
 
 Route::controller(JenisPemasukanController::class)->group(function () {
-        Route::get('/jenis_pemasukan', 'index');
-        Route::post('/jenis_pemasukan/tambah', 'store');
-        Route::post('/jenis_pemasukan/{id}/edit', 'store');
-        Route::delete('/jenis_pemasukan/{id}/hapus', 'delete');
+    Route::get('/jenis_pemasukan', 'index');
+    Route::post('/jenis_pemasukan/tambah', 'store');
+    Route::post('/jenis_pemasukan/{id}/edit', 'store');
+    Route::delete('/jenis_pemasukan/{id}/hapus', 'delete');
 });
 
 Route::controller(JenisPengeluaranController::class)->group(function () {

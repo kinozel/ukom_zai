@@ -41,7 +41,7 @@
             width: 260px;
         }
         .container {
-            width: 100vw;
+            width: 70vw;
         }
 
         .main1{
@@ -112,7 +112,7 @@
             </div>
             <div class="main1" style="margin-top:30px;color:#BCBCBCC9;"> Menu
                 <div class="list-content">
-                    <a href="#">
+                    <a href="{{url('/dashboard')}}">
                         <span class="text1" style="color:white; font-size: 15px;">Dashboard</span>
                     </a>
                 </div>
@@ -122,12 +122,12 @@
                     </a>
                 </div>
                 <div class="list-content">
-                    <a href="#">
+                    <a href="{{url('/pemasukan')}}">
                         <span class="text1 " style="color:white; font-size: 15px;">Pemasukan</span>
                     </a>
                 </div>
                 <div class="list-content">
-                    <a href="#">
+                    <a href="{{url('/pengeluaran')}}">
                         <span class="text1" style="color: white; font-size: 15px;">Pengeluaran</span>
                     </a>
                 </div>
@@ -138,11 +138,11 @@
                 
                 <div class="col-3" style="margin-top: 20px; margin-left:30px;">
                         <a href="#"><span style="font-size: 25px;color: #BCBCBCC9;">Home / </span></a>
-                        <a href="#"><span style="font-size: 25px;color: white;"> Dashboard</span></a>
+                        <a href="#"><span style="font-size: 25px;color: white;"> @yield('title')</span></a>
                 </div style>  
                 <div class="col-3">
-                <span style="font-size: 15px;color: black; margin-left:500px; margin-bottom:100px"> Halo!</span>
-                    <a class="btn logout btn-danger" style="margin-left: 570px; margin-top:-30px;" href="{{ route('logout')}}">{{ __('Logout') }}</a>
+                <span style="font-size: 15px;color: black; margin-left:450px; margin-bottom:100px"> Halo!</span>
+                    <a class="btn logout btn-danger" style="margin-left: 520px; margin-top:-30px;" href="{{ route('logout')}}">{{ __('Logout') }}</a>
                 </div>      
                 <div class="mt-3">
                 <span style="font-size: 30px;color: #FBAF01; margin-left:-290px; padding-bottom: -100px;" > {{Auth::user()->username}}</span>

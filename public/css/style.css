@@ -19,7 +19,7 @@ body {
 
     color: #FBAF01; /* Warna teks */
     font-size: 32px; /* Ukuran font */
-    font-family: 'Fredoka One', sans-serif; /* Keluarga font */
+    font-family: 'Fredoka'; 
     font-weight: 400; /* Ketebalan font */
     word-wrap: break-word; /* Wrap kata jika melebihi lebar elemen */
 }

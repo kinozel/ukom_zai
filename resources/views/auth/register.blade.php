@@ -46,7 +46,7 @@
                         @csrf
 
                         <!-- Submit button -->
-                        <button class="custom-login-button" type="submit">register</button>
+                        <button class="custom-login-button" type="submit">Register</button>
                         <div class="custom-register-text">
                             Wes nduwe akun?
                          <span>  <a href="{{url('/login')}}">Login lur</a></span>

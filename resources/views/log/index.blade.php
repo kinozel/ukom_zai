@@ -6,6 +6,7 @@
     </div>
     <div class="row justify-content-center" style="margin-left: -200px">
         <div class="col-md">
+            <span style="font-size: 25px;color: white;"> @yield('title')</span>
             <div class="card" style="width: 75vw">
                 <div class="card-body">
                     <table class="table table-bordered table-hovered DataTable" style="width: 72vw;">

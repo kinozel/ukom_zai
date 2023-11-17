@@ -8,7 +8,9 @@
                 Kembali</a>
             <button type="button" class="btn btn-warning" data-bs-toggle="modal"
                 data-bs-target="#tambahmasuk-modal">Tambah</button>
-
+            <a class="btn btn-primary me-1" href="{{url('/pemasukan/cetakpdf')}}">
+                Cetak Pdf</a>
+            
             {{-- modaltambah --}}
             <div class="modal fade" id="tambahmasuk-modal" tabindex="-1" aria-labelledby="exampleModalLabel"
                 aria-hidden="true">
@@ -63,10 +65,13 @@
                 </div>
             </div>
 
-
+            
             <div class="card mt-2" style="width: 75vw">
+
+                        <span style="font-size: 15px;color: black; margin-left:10px;"> @yield('title')</span>
+
                 <div class="card-body">
-                    <table class="table table-bordered table-hovered DataTable" style="width: 72vw">
+                    <table class="table table-hovered DataTable" style="width: 72vw">
                         <thead>
                             <tr>
                                 <th>NO</th>
@@ -159,7 +164,7 @@
                         </tbody>
                     </table>
                 </div>
-            </div>
+            </div> 
         </div>
     </div>
     @endsection

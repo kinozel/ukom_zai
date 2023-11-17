@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Support\Facades\DB;
 
 return new class extends Migration {
-    private $triggerName = 'trigger_after_insert_pemasukan';
+    private $triggerL = 'trigger_after_insert_pemasukan';
 
     /**
      * Run the migrations.
@@ -12,7 +12,7 @@ return new class extends Migration {
     public function up(): void
     {
         DB::unprepared(
-            "CREATE OR REPLACE TRIGGER $this->triggerName
+            "CREATE OR REPLACE TRIGGER $this->triggerL
             AFTER INSERT ON pemasukan FOR EACH ROW
             BEGIN
                 DECLARE j_pemasukan VARCHAR(100);
@@ -39,6 +39,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        DB::unprepared("DROP TRIGGER IF EXISTS $this->triggerName");
+        DB::unprepared("DROP TRIGGER IF EXISTS $this->triggerL");
     }
 };

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+
+use Mpdf\Mpdf;
 use App\Http\Requests\PemasukanRequest;
 use App\Http\Requests\PemasukanEditRequest;
 use App\Models\JenisPemasukan;
@@ -14,11 +16,11 @@ class PemasukanController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index() 
+    public function index()
     {
         $data = [
-            'pemasukan'=> Pemasukan::with('jenis')->orderByDesc('tanggal_pemasukan')->get(),
-            'jenis_pemasukan'=> JenisPemasukan::all(),
+            'pemasukan' => Pemasukan::with('jenis')->orderByDesc('tanggal_pemasukan')->get(),
+            'jenis_pemasukan' => JenisPemasukan::all(),
         ];
 
         // return $data;
@@ -26,22 +28,32 @@ class PemasukanController extends Controller
         return view('pemasukan.index', $data);
     }
 
+    // public function cetakPdf()
+    // {
+    //     $data = [
+    //         'pemasukan' => Pemasukan::with('jenis')->orderByDesc('tanggal_pemasukan')->get(),
+    //         'jenis_pemasukan' => JenisPemasukan::all(),
+    //     ];
+    //     $mpdf = new Mpdf();
+    //     $mpdf->WriteHTML(view('pemasukan.index', $data));
+    //     $mpdf->Output('data-pemasukan.pdf', 'pdf');
+    // }
+
     /**
      * Store a newly created resource in storage.
      */
     public function store(PemasukanRequest $request)
-    {
-        {
+    { {
             $data = $request->validated();
-    
+
             $pemasukan = Pemasukan::query()->create($data);
-    
+
             if (!$pemasukan) {
                 return response()->json([
                     'message' => 'Failed create pemasukan'
                 ], 403);
             }
-    
+
             return response()->json([
                 'message' => 'Pemasukan created'
             ], 201);
@@ -51,13 +63,13 @@ class PemasukanController extends Controller
     {
         $pemasukan = Pemasukan::query()->find($id)->delete();
 
-        if ($pemasukan):
+        if ($pemasukan) :
             //Pesan Berhasil
             $pesan = [
                 'success' => true,
                 'pesan' => 'Data user berhasil dihapus'
             ];
-        else:
+        else :
             //Pesan Gagal
             $pesan = [
                 'success' => false,
@@ -92,4 +104,4 @@ class PemasukanController extends Controller
             'message' => 'Berhasil update surat!'
         ];
     }
-    }
+}
