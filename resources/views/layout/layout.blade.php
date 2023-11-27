@@ -122,6 +122,43 @@
         .sam-btn{
             box-shadow: 0px 4px 3px 5px rgba(0, 0, 0, 0.60); border-radius: 10px
         }
+        .akun .box-akun {
+
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(22rem, 1fr));
+gap: 1.5rem;
+
+}
+
+.akun .box-akun .box {
+
+text-align: center;
+padding: 2rem;
+
+}
+.akun .box-akun .box dt {
+
+font-size: 2rem;
+color: #ffffff;
+
+
+}
+
+.akun .box-akun .box dd {
+
+font-size: 1.5rem;
+color: #ffffff;
+
+
+}
+.judul {
+
+color: #ffffff;
+text-align: center;
+margin-bottom: 2.5rem;
+font-size: 2.5rem;
+}
+
 
     </style>
 </head>
@@ -135,9 +172,12 @@
 </div>
 <div   ><h5 style="color: rgba(188.06, 188.06, 188.06, 0.79); margin-right:50%; margin-top:15%;">Menu</h5></div>
 
-  <a href="#" class="w3-bar-item sam-tulisan"><h5>Dashboard</h5></a>
-  <a href="#" class="w3-bar-item sam-tulisan"><h5>Pemasukan</h5></a>
-  <a href="#" class="w3-bar-item sam-tulisan"><h5>Pengeluaran</h5></a>
+  <a href="{{url('/dashboard')}}" class="w3-bar-item sam-tulisan"><h5>Dashboard</h5></a>
+@if(auth()->user()->role == 'dkm' || auth()->user()->role == 'superadmin')
+
+  <a href="{{url('/pemasukan')}}" class="w3-bar-item sam-tulisan"><h5>Pemasukan</h5></a>
+  <a href="{{url('/pengeluaran')}}" class="w3-bar-item sam-tulisan"><h5>Pengeluaran</h5></a>
+  @endif
 </div>
 <div class="w3-bar w3-right sam-navbar" style="width: 84%; height:10%;">
   <a  class="w3-bar-item sam-tulisan" style="color: rgba(188.06, 188.06, 188.06, 0.79); margin-top:1.5%; margin-left:2%;"><h2>Home</h2></a>

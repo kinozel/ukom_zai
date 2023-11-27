@@ -17,6 +17,8 @@
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     {{-- <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet" type="text/css"> <!-- Tambahkan Bootstrap CSS --> --}}
     <link href="{{ asset('css/style.css') }}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
     
 
     <style>
@@ -40,10 +42,8 @@
             
             
 
-            <main class="container" width="100vw">
-        {{-- @include('layouts.flash-message') --}}
-             @yield('content')
-            </main>
+@yield('content')
+
 
 @yield('footer')
 <script>

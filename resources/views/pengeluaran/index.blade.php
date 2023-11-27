@@ -9,6 +9,8 @@
                 Kembali</a>
             <button type="button" class="btn btn-warning" data-bs-toggle="modal"
                 data-bs-target="#tambahkeluar-modal">Tambah</button>
+                <a class="btn btn-danger me-1" target="_blank" href="{{ url('/pengeluaran/cetak') }}">
+                    Cetak Data</a>
 
             {{-- modaltambah --}}
             <div class="modal fade" id="tambahkeluar-modal" tabindex="-1" aria-labelledby="exampleModalLabel"
@@ -16,7 +18,7 @@
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah Data Pemasukan</h1>
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah Data Pengeluaran</h1>
                         </div>
                         <div class="modal-body">
                             <form id="tambahkeluar-form" enctype="multipart/form-data">
@@ -25,7 +27,7 @@
                                        <input type="hidden" name="id_user" class="d-none"
                                               value="{{ Auth::user()["id"] }}">
                                     @endauth --}}
-                                    <label>Jenis Pemasukan</label>
+                                    <label>Jenis Pengeluaran</label>
                                     <select name="id_jenis_pengeluaran" id="jenisPengeluaran" class="form-select mb-3">
                                         <option selected value="">Pilih jenis pengeluaran</option>
                                         @foreach($jenis_pengeluaran as $jpl)
@@ -121,13 +123,13 @@
                                                        <input type="hidden" name="id_user" class="d-none"
                                                               value="{{ Auth::user()["id"] }}">
                                                    @endauth --}}
-                                                   <label>Jenis Pemasukan</label>
+                                                   <label>Jenis Pengeluaran</label>
                                                    <select name="id_jenis_pengeluaran" id="jenisPengeluaran"
                                                            class="form-select mb-3">
-                                                       @foreach($jenis_pengeluaran as $jpm)
-                                                           <option value="{{$jpm->id}}"
-                                                                   @if($jpm->id === $pgl->id_jenis_pengeluaran) selected
-                                                               @endif>{{$jpm->jenis_pengeluaran}}</option>
+                                                       @foreach($jenis_pengeluaran as $jpl)
+                                                           <option value="{{$jpl->id}}"
+                                                                   @if($jpl->id === $pgl->id_jenis_pengeluaran) selected
+                                                               @endif>{{$jpl->jenis_pengeluaran}}</option>
                                                        @endforeach
                                                    </select>
                                                    <label>Tanggal Pengeluaran</label>
@@ -244,14 +246,14 @@
         ///edit
         $('.editBtn').on('click', function (e) {
             e.preventDefault();
-            let idPemasukan = $(this).attr('idPemasukan');
-            $(`#edit-pemasukan-form-${idPemasukan}`).on('submit', function (e) {
+            let idPengeluaran = $(this).attr('idPengeluaran');
+            $(`#edit-pengeluaran-form-${idPengeluaran}`).on('submit', function (e) {
                 e.preventDefault();
                 let data = new FormData(this);
                 // console.log(Object.fromEntries(data));
-                axios.post(`/pemasukan/${idPemasukan}/edit`, data)
+                axios.post(`/pengeluaran/${idPengeluaran}/edit`, data)
                     .then(() => {
-                        $(`#edit-modal-${idPemasukan}`).css('display', 'none')
+                        $(`#edit-modal-${idPengeluaran}`).css('display', 'none')
                         swal.fire('Berhasil edit data!', '', 'success').then(function () {
                             location.reload();
                         })
@@ -270,39 +272,6 @@
         })
 
 
-
-
-        // $('.table').on('click', '.hapusBtn', function () {
-        //     let idPemasukan = $(this).closest('tr').attr('idPemasukan');
-        //     swal.fire({
-        //         title: "Apakah anda ingin menghapus data ini?",
-        //         showCancelButton: true,
-        //         confirmButtonText: 'Gas',
-        //         cancelButtonText: 'gajadi',
-        //         confirmButtonColor: 'red'
-        //     }).then((result) => {
-        //         if (result.isConfirmed) {
-        //             //dilakukan proses hapus
-        //             axios.delete(`/pemasukan/${idPemasukan}`)
-        //                 .then(function (response) {
-        //                     console.log(response);
-        //                     if (response.data.success) {
-        //                         swal.fire('Berhasil di hapus!', '', 'success').then(function () {
-        //                             //Refresh Halaman
-        //                             location.reload();
-        //                         });
-        //                     } else {
-        //                         swal.fire('Gagal di hapus!', '', 'warning');
-        //                     }
-        //                 }).catch(function (error) {
-        //                 swal.fire('Data gagal di hapus!', '', 'error').then(function () {
-        //                     //Refresh Halaman
-        //                     location.reload();
-        //                 });
-        //             });
-        //         }
-        //     });
-        // })
 
 </script>
     @endsection

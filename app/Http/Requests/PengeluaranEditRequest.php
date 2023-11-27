@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class PemasukanEditRequest extends FormRequest
+class PengeluaranEditRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,17 +22,16 @@ class PemasukanEditRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'id_jenis_pemasukan' => ['required'],
-            'jumlah_pemasukan' => ['required'],
-            'tanggal_pemasukan' => ['required', 'date'],
+            'id_jenis_pengeluaran' => ['required'],
+            'jumlah_pengeluaran' => ['required'],
+            'tanggal_pengeluaran' => ['required', 'date'],
+            'dokumentasi_pengeluaran' => ['nullable', 'mimes:png,jpeg,jpg']
+        ];    }
 
-            'deskripsi' => ['required']
-        ];
+        public function attributes()
+        {
+            return [
+                'id_jenis_pengeluaran' => 'Jenis pengeluaran',
+            ];
+        }
     }
-    public function attributes()
-    {
-        return [
-            'id_jenis_pemasukan' => 'Jenis pemasukan',
-        ];
-    }
-}

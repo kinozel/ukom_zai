@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\PengeluaranRequest;
+use App\Http\Requests\PengeluaranEditRequest;
+
 use App\Models\Pengeluaran;
 use App\Models\JenisPengeluaran;
 use Illuminate\Http\JsonResponse;
@@ -25,6 +27,18 @@ class PengeluaranController extends Controller
 
         return view('pengeluaran.index', $data);
     }
+
+    public function cetakpengeluaran()
+    {
+        $data = [
+            'pengeluaran'=> Pengeluaran::with('jenis_pengeluaran')->orderByDesc('tanggal_pengeluaran')->get(),
+            'jenis_pengeluaran'=> JenisPengeluaran::all(),
+        ];
+
+        // return $data;
+
+        return view('pengeluaran.cetak', $data);
+    } 
 
     public function store(PengeluaranRequest $request)
     {
@@ -70,6 +84,27 @@ class PengeluaranController extends Controller
         endif;
         return response()->json($pesan);
     }
+    public function update(PengeluaranEditRequest $request)
+    {
+        $data = $request->validated();
+        $pengeluaran = Pengeluaran::query()->find($request->id);
+
+        // if ($path = $request->file('file')) {
+        //     // Delete old file
+        //     if ($surat->file) {
+        //         Storage::delete("public/$surat->file");
+        //     }
+
+        //     // Store new file
+        //     $path = $path->storePublicly('', 'public');
+        //     $data['file'] = $path;
+        // }
+
+        $pengeluaran->fill($data)->save();
+
+        return [
+            'message' => 'Berhasil update surat!'
+        ];
 
 
-    }
+    }}
