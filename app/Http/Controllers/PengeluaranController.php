@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PengeluaranEditRequest;
 use App\Http\Requests\PengeluaranRequest;
 use App\Models\Pengeluaran;
 use App\Models\JenisPengeluaran;
@@ -85,5 +86,27 @@ class PengeluaranController extends Controller
         return response()->json($pesan);
     }
 
+    public function update(PengeluaranEditRequest $request)
+    {
+        $data = $request->validated();
+        $pengeluaran = Pengeluaran::query()->find($request->id);
+
+        if ($path = $request->file('dokumentasi_pengeluaran')) {
+            // Delete old file
+            if ($pengeluaran->file) {
+                Storage::delete("public/$pengeluaran->file");
+            }
+
+            // Store new file
+            $path = $path->storePublicly('', 'public');
+            $data['dokumentasi_pengeluaran'] = $path;
+        }
+
+        $pengeluaran->update($data);
+
+        return [
+            'message' => 'Berhasil update pengeluaran!'
+        ];
+    }
 
     }

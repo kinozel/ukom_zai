@@ -259,14 +259,14 @@
             ///edit
             $('.editBtn').on('click', function(e) {
                 e.preventDefault();
-                let idPemasukan = $(this).attr('idPemasukan');
-                $(`#edit-pemasukan-form-${idPemasukan}`).on('submit', function(e) {
+                let idPengeluaran = $(this).attr('idPengeluaran');
+                $(`#edit-pengeluaran-form-${idPengeluaran}`).on('submit', function(e) {
                     e.preventDefault();
                     let data = new FormData(this);
-                    // console.log(Object.fromEntries(data));
-                    axios.post(`/pemasukan/${idPemasukan}/edit`, data)
+                    console.log(Object.fromEntries(data));
+                    axios.post(`/pengeluaran/${idPengeluaran}/edit`, data)
                         .then(() => {
-                            $(`#edit-modal-${idPemasukan}`).css('display', 'none')
+                            $(`#edit-modal-${idPengeluaran}`).css('display', 'none')
                             swal.fire('Berhasil edit data!', '', 'success').then(function() {
                                 location.reload();
                             })
@@ -274,7 +274,7 @@
                         .catch(({
                             response
                         }) => {
-                            // console.log(err)
+                            console.log(err)
                             let message = '';
 
                             Object.values(response.data.errors).flat().map((e) =>

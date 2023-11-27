@@ -5,7 +5,7 @@
         <div class="row justify-content-center ">
             <div class="total">
                 <span style="font-size: 30px;color: white; margin-left:500px;">Total Pemasukan</span><br>
-                <span style="font-size: 30px;color: white; margin-left:500px;"><?= $totalpemasukan ?></span>
+                {{-- <span style="font-size: 30px;color: white; margin-left:500px;"><?= $totalpemasukan ?></span> --}}
 
             </div>
             <div class="col-md">
