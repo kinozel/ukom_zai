@@ -1,14 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-
-
-use Mpdf\Mpdf;
 use App\Http\Requests\PemasukanRequest;
 use App\Http\Requests\PemasukanEditRequest;
 use App\Models\JenisPemasukan;
 use Illuminate\Http\JsonResponse;
 use App\Models\Pemasukan;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class PemasukanController extends Controller
@@ -20,24 +18,13 @@ class PemasukanController extends Controller
     {
         $data = [
             'pemasukan' => Pemasukan::with('jenis')->orderByDesc('tanggal_pemasukan')->get(),
-            'jenis_pemasukan' => JenisPemasukan::all(),
+            'jenis_masuk' => JenisPemasukan::all(),
         ];
 
         // return $data;
 
         return view('pemasukan.index', $data);
-    }
-
-    // public function cetakPdf()
-    // {
-    //     $data = [
-    //         'pemasukan' => Pemasukan::with('jenis')->orderByDesc('tanggal_pemasukan')->get(),
-    //         'jenis_pemasukan' => JenisPemasukan::all(),
-    //     ];
-    //     $mpdf = new Mpdf();
-    //     $mpdf->WriteHTML(view('pemasukan.index', $data));
-    //     $mpdf->Output('data-pemasukan.pdf', 'pdf');
-    // }
+    }   
 
     /**
      * Store a newly created resource in storage.
@@ -59,6 +46,14 @@ class PemasukanController extends Controller
             ], 201);
         }
     }
+
+    public function totalpemasukan()
+    {
+        $totalpemasukan = DB::selectOne('SELECT total_pemasukan() AS total')->total;
+        return view('pemasukan.index', ['totalpemasukan' => $totalpemasukan]);
+
+    }
+    
     public function delete(int $id): JsonResponse
     {
         $pemasukan = Pemasukan::query()->find($id)->delete();

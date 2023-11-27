@@ -137,7 +137,7 @@
             <div class="navbar" style="margin-left:285px; margin-top: -335px; width: 83.8vw; height: 12vh; box-shadow: 0px 4px 10px black; background-color: rgba(189, 189, 189, 0.4); border-radius: 0px 0px 0px 15px; ">
                 
                 <div class="col-3" style="margin-top: 20px; margin-left:30px;">
-                        <a href="#"><span style="font-size: 25px;color: #BCBCBCC9;">Home / </span></a>
+                        <a href="{{url('/dashboard')}}"><span style="font-size: 25px;color: #BCBCBCC9;">Home / </span></a>
                         <a href="#"><span style="font-size: 25px;color: white;"> @yield('title')</span></a>
                 </div style>  
                 <div class="col-3">

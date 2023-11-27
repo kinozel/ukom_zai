@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('id_jenis_pemasukan')->nullable(false);
             // $table->char('id_anggota_jamaah')->nullable(false);
-            $table->string('jumlah_pemasukan',20)->nullable(false);
+            $table->unsignedBigInteger('jumlah_pemasukan')->nullable(false);
             $table->datetime('tanggal_pemasukan')->default('2023-01-01 00:00:00')->nullable(false);
             $table->text('deskripsi')->nullable(true);
 

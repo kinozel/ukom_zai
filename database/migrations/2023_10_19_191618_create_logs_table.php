@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('logs', function (Blueprint $table) {
             $table->id();
-            $table->enum('action', ['INSERT', 'UPDATE', 'DELETE']);
+            $table->enum('action', ['INSERT']);
             $table->text('log');
             $table->dateTime('created_at')->useCurrent();
         });

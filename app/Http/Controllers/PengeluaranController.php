@@ -6,6 +6,7 @@ use App\Http\Requests\PengeluaranRequest;
 use App\Models\Pengeluaran;
 use App\Models\JenisPengeluaran;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 
@@ -31,6 +32,13 @@ class PengeluaranController extends Controller
         ];
         return view('pengeluaran.cetak', $data);
     }
+
+//     public function showTotalPengeluaran()
+// {
+//     $totalPengeluaran = DB::select('SELECT total_pengeluaran() AS total')[0]->total;
+    
+//     return view('pengeluaran.index', ['totalPengeluaran' => $totalPengeluaran]);
+// }
 
     public function store(PengeluaranRequest $request)
     {

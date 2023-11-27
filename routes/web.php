@@ -55,14 +55,17 @@ Route::prefix('/dashboard')->middleware('auth')->group(function () {
 
 Route::controller(PemasukanController::class)->group(function () {
     Route::get('/pemasukan', 'index');
-    Route::get('/pemasukan/cetakpdf', 'cetakPdf');
+    Route::get('/pemasukan', 'totalpemasukan');
     Route::post('/pemasukan/tambah', 'store');
     Route::post('/pemasukan/{id}/edit', 'update');
     Route::delete('/pemasukan/{id}/hapus', 'delete');
 });
 
+// Route::get('/pengeluaran', [PengeluaranController::class, 'showTotalPengeluaran']);
+
 Route::controller(PengeluaranController::class)->group(function () {
     Route::get('/pengeluaran', 'index');
+    // Route::get('/pengeluaran', 'showTotalPengeluaran');
     Route::post('/pengeluaran/tambah', 'store');
     Route::post('/pengeluaran/{id}/edit', 'update');
     Route::get('/pengeluaran/cetak', 'cetakPengeluaran');

@@ -14,6 +14,7 @@
                     data-bs-target="#tambahkeluar-modal">Tambah</button>
                 <a class="btn btn-danger me-1" target="_blank" href="{{ url('/pengeluaran/cetak') }}">
                     Cetak Data</a>
+                {{-- <span style="font-size: 30px;color: white; margin-left:500px;">Total</span>    --}}
                 {{-- modaltambah --}}
                 <div class="modal fade" id="tambahkeluar-modal" tabindex="-1" aria-labelledby="exampleModalLabel"
                     aria-hidden="true">
