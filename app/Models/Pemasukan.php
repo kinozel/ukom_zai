@@ -35,7 +35,7 @@ class Pemasukan extends Model
     protected $guarded = ['id'];
     public $timestamps = false;
 
-    public function jenis()
+    public function jenis_pemasukan()
     {
         return $this->belongsTo(JenisPemasukan::class, 'id_jenis_pemasukan');
     }

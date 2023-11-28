@@ -105,7 +105,7 @@
                             @foreach($pemasukaN as $pmsk)
                             <tr idPemasukan="{{$pmsk->id}}">
                                 <td class="col-1">{{$no++}}</td>
-                                <td class="col-1">{{$pmsk->jenis->jenis_pemasukan}}</td>
+                                <td class="col-1">{{$pmsk->jenis_pemasukan->jenis_pemasukan}}</td>
                                 <td class="col-2">{{$pmsk->jumlah_pemasukan}}</td>
                                 <td class="col-1">{{$pmsk->tanggal_pemasukan}}</td>
                                 <td class="col-4">{{$pmsk->deskripsi}}</td>
@@ -125,6 +125,8 @@
 <div class="row" style="margin-top:100px; margin-left: -200px">
     <h4 style="color: rgba(188.06, 188.06, 188.06, 0.79);">Data Pengeluaran</h4>
     <div class="col">
+    <a class="btn btn-danger me-1" target="_blank" href="{{ url('/dashboard/cetak') }}">
+                    Cetak Data</a>
         <div class="card mt-2" style="width:75vw;">
             <div class="card-body">
                 <table class="table table-bordered table-hovered DataTable" style="width: 73vw;">

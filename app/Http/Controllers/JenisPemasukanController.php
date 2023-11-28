@@ -6,6 +6,7 @@ use App\Models\JenisPemasukan;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
+
 class JenisPemasukanController extends Controller
 {
     /**

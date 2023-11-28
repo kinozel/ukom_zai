@@ -30,11 +30,11 @@ class JenisPengeluaranController extends Controller
             'jenis_pengeluaran' => ['required']
         ]);
 
-        // if (JenisPengeluaran::query()->where('jenis_pengeluaran', $request->jenis_pengeluaran)->count('id') ) {
-        //     return response()->json([
-        //         'message' => "Jenis pengeluaran $request->jenis_pengeluaran already exists."
-        //     ], 400);
-        // }
+        if (JenisPengeluaran::query()->where('jenis_pengeluaran', $request->jenis_pengeluaran)->count('id') ) {
+            return response()->json([
+                'message' => "Jenis pengeluaran $request->jenis_pengeluaran already exists."
+            ], 400);
+        }
 
         if ($data) {
             if ($request->id !== null) {

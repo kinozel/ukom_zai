@@ -8,6 +8,8 @@
                 Kembali</a>
             <button type="button" class="btn btn-warning" data-bs-toggle="modal"
                 data-bs-target="#tambahmasuk-modal">Tambah</button>
+                <a class="btn btn-danger me-1" target="_blank" href="{{ url('/pemasukan/cetak') }}">
+                    Cetak Data</a>
 
             {{-- modaltambah --}}
             <div class="modal fade" id="tambahmasuk-modal" tabindex="-1" aria-labelledby="exampleModalLabel"
@@ -84,10 +86,10 @@
                             @foreach($pemasukan as $pmsk)
                             <tr idPemasukan="{{$pmsk->id}}">
                                 <td class="col-1">{{$no++}}</td>
-                                @empty($pmsk->jenis->jenis_pemasukan)
+                                @empty($pmsk->jenis_pemasukan->jenis_pemasukan)
                                     <td>Pemasukan kosong</td>
                                 @endempty
-                                <td class="col-1">{{$pmsk->jenis->jenis_pemasukan}}</td>
+                                <td class="col-1">{{$pmsk->jenis_pemasukan->jenis_pemasukan}}</td>
                                 <td class="col-2">{{$pmsk->jumlah_pemasukan}}</td>
                                 <td class="col-1">{{$pmsk->tanggal_pemasukan}}</td>
                                 <td class="col-4">{{$pmsk->deskripsi}}</td>

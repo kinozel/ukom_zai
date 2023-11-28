@@ -50,6 +50,8 @@ Route::prefix('/dashboard')->middleware('auth')->group(function () {
 
 Route::controller(DashboardController::class)->group(function () {
     Route::get('/', [DashboardController::class, 'index']);
+    Route::get('/cetak', [PengeluaranController::class, 'cetakpengeluaran']);
+
 
     
 });
@@ -61,6 +63,7 @@ Route::middleware(['role:dkm,superadmin'])->group(function () {
         Route::get('/', [PemasukanController::class, 'index']);
         Route::post('/tambah', [PemasukanController::class, 'store']);
         Route::post('/{id}/edit', [PemasukanController::class, 'update']);
+        Route::get('/cetak', [PemasukanController::class, 'cetakpemasukan']);
         Route::delete('/{id}/hapus', [PemasukanController::class, 'delete']);
     });
 

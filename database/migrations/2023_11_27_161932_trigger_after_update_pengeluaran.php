@@ -30,7 +30,7 @@ return new class extends Migration
                 CALL Logger_pengeluaran('UPDATE',
                     CONCAT(
                         'id_pengeluaran: ', NEW.id,
-                        ', jenis_pengeluaran: ', NEW.jenis_pengeluaran,
+                        ', jenis_pengeluaran: ', j_pengeluaran,
                         ', tanggal_pengeluaran: ', NEW.tanggal_pengeluaran,
                         -- ', deskripsi: ', @deskripsi,
                         ', jumlah_pengeluaran: ', @jumlah_pengeluaran

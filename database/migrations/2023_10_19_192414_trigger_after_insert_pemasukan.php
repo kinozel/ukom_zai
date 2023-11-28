@@ -25,6 +25,8 @@ return new class extends Migration {
                 CALL Logger('INSERT',
                     CONCAT(
                         'id_pemasukan: ', NEW.id,
+                        ', jenis_pemasukan: ', j_pemasukan,
+                        
                         ', tanggal_pemasukan: ', NEW.tanggal_pemasukan,
                         -- ', deskripsi: ', @deskripsi,
                         ', jumlah_pemasukan: ', @jumlah_pemasukan

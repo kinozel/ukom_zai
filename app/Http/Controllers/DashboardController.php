@@ -17,7 +17,7 @@ class DashboardController extends Controller
         $data = [
             'jenis_pemasukan' => JenisPemasukan::query()->count(),
             'pemasukan' => Pemasukan::query()->count(),
-            'pemasukaN'=> Pemasukan::with('jenis')->orderByDesc('tanggal_pemasukan')->get(), 
+            'pemasukaN'=> Pemasukan::with('jenis_pemasukan')->orderByDesc('tanggal_pemasukan')->get(), 
             'pengeluaraN'=> Pengeluaran::with('jenis_pengeluaran')->orderByDesc('tanggal_pengeluaran')->get(),
             'jenis_pengeluaran' => JenisPengeluaran::query()->count(),
             'pengeluaran' => Pengeluaran::query()->count(),
@@ -30,4 +30,15 @@ class DashboardController extends Controller
 
         return view('dashboard.index', $data);
     }
+    public function cetakpengeluaran()
+    {
+        $data = [
+            'pengeluaran'=> Pengeluaran::with('jenis_pengeluaran')->orderByDesc('tanggal_pengeluaran')->get(),
+            'jenis_pengeluaran'=> JenisPengeluaran::all(),
+        ];
+
+        // return $data;
+
+        return view('pengeluaran.cetak', $data);
+    } 
 }

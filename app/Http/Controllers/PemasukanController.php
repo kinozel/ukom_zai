@@ -17,7 +17,7 @@ class PemasukanController extends Controller
     public function index() 
     {
         $data = [
-            'pemasukan'=> Pemasukan::with('jenis')->orderByDesc('tanggal_pemasukan')->get(),
+            'pemasukan'=> Pemasukan::with('jenis_pemasukan')->orderByDesc('tanggal_pemasukan')->get(),
             'jenis_pemasukan'=> JenisPemasukan::all(),
         ];
 
@@ -25,6 +25,17 @@ class PemasukanController extends Controller
 
         return view('pemasukan.index', $data);
     }
+    public function cetakpemasukan()
+    {
+        $data = [
+            'pemasukan'=> Pemasukan::with('jenis_pemasukan')->orderByDesc('tanggal_pemasukan')->get(),
+            'jenis_pemasukan'=> JenisPemasukan::all(),
+        ];
+
+        // return $data;
+
+        return view('pemasukan.cetak', $data);
+    } 
 
     /**
      * Store a newly created resource in storage.

@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 
 return new class extends Migration
 {
-    private $triggerName = 'trigger_after_insert_pengeluaran';
+    private $triggerName = 'trigger_after_update_pemasukan';
 
     /**
      * Run the migrations.
@@ -18,23 +18,22 @@ return new class extends Migration
         //
         DB::unprepared(
             "CREATE OR REPLACE TRIGGER $this->triggerName
-            AFTER INSERT ON pengeluaran FOR EACH ROW
+            AFTER UPDATE ON pemasukan FOR EACH ROW
             BEGIN
-                DECLARE j_pengeluaran VARCHAR(100);
+                DECLARE j_pemasukan VARCHAR(100);
 
-                SELECT jenis_pengeluaran INTO j_pengeluaran FROM jenis_pengeluaran WHERE id = NEW.id_jenis_pengeluaran;
+                SELECT jenis_pemasukan INTO j_pemasukan FROM jenis_pemasukan WHERE id = NEW.id_jenis_pemasukan;
 
                 -- SET @deskripsi := IFNULL(NEW.deskripsi, 'NULL');
-                SET @jumlah_pengeluaran := IFNULL(NEW.jumlah_pengeluaran, 'NULL');
+                SET @jumlah_pemasukan := IFNULL(NEW.jumlah_pemasukan, 'NULL');
 
-                CALL Logger_pengeluaran('INSERT',
+                CALL Logger('UPDATE',
                     CONCAT(
-                        'id_pengeluaran: ', NEW.id,
-                        ', jenis_pengeluaran: ', j_pengeluaran,
-                        ', tanggal_pengeluaran: ', NEW.tanggal_pengeluaran,
-
+                        'id_pemasukan: ', NEW.id,
+                        ', jenis_pemasukan: ', j_pemasukan,
+                        ', tanggal_pemasukan: ', NEW.tanggal_pemasukan,
                         -- ', deskripsi: ', @deskripsi,
-                        ', jumlah_pengeluaran: ', @jumlah_pengeluaran
+                        ', jumlah_pemasukan: ', @jumlah_pemasukan
                     )
                 );
             END;"

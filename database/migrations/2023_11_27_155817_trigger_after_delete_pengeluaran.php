@@ -30,7 +30,7 @@ return new class extends Migration
                 CALL Logger_pengeluaran('DELETE',
                     CONCAT(
                         'id_pengeluaran: ', OLD.id,
-                        ', jenis_pengeluaran: ', OLD.jenis_pengeluaran,
+                        ', jenis_pengeluaran: ', j_pengeluaran,
 
                         ', tanggal_pengeluaran: ', OLD.tanggal_pengeluaran,
                         -- ', deskripsi: ', @deskripsi,
