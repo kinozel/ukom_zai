@@ -19,6 +19,7 @@ class PemasukanController extends Controller
         $data = [
             'pemasukan' => Pemasukan::with('jenis')->orderByDesc('tanggal_pemasukan')->get(),
             'jenis_masuk' => JenisPemasukan::all(),
+            'totalPemasukan' => DB::select('SELECT total_pemasukan() AS total')[0]->total,
         ];
 
         // return $data;
@@ -45,13 +46,6 @@ class PemasukanController extends Controller
                 'message' => 'Pemasukan created'
             ], 201);
         }
-    }
-
-    public function totalpemasukan()
-    {
-        $totalpemasukan = DB::selectOne('SELECT total_pemasukan() AS total')->total;
-        return view('pemasukan.index', ['totalpemasukan' => $totalpemasukan]);
-
     }
     
     public function delete(int $id): JsonResponse

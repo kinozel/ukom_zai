@@ -41,13 +41,6 @@ Route::prefix('/dashboard')->middleware('auth')->group(function () {
     Route::get('/', [DashboardController::class, 'index']);
     Route::middleware(['role:SuperAdmin', 'Dkm'])->group(function () {
 
-        Route::controller(PengeluaranController::class)->group(function () {
-            Route::get('/pengeluaran', 'index');
-            Route::post('/pengeluaran/tambah', 'store');
-            Route::post('/pengeluaran/{id}/edit', 'update');
-            Route::get('/pengeluaran/cetak', 'cetakPengeluaran');
-            Route::delete('/pengeluaran/{id}/hapus', 'delete');
-        });
     });
 });
 
@@ -55,7 +48,7 @@ Route::prefix('/dashboard')->middleware('auth')->group(function () {
 
 Route::controller(PemasukanController::class)->group(function () {
     Route::get('/pemasukan', 'index');
-    Route::get('/pemasukan', 'totalpemasukan');
+    // Route::get('/pemasukan', 'totalpemasukan');
     Route::post('/pemasukan/tambah', 'store');
     Route::post('/pemasukan/{id}/edit', 'update');
     Route::delete('/pemasukan/{id}/hapus', 'delete');

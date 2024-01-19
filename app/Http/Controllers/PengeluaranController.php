@@ -21,6 +21,7 @@ class PengeluaranController extends Controller
         $data = [
             'pengeluaran'=> Pengeluaran::with('jenis_pengeluaran')->orderByDesc('tanggal_pengeluaran')->get(),
             'jenis_pengeluaran'=> JenisPengeluaran::all(),
+            'totalPengeluaran' => Pengeluaran::sum('jumlah_pengeluaran'),
         ];
         return view('pengeluaran.index', $data);
     }
@@ -88,18 +89,36 @@ class PengeluaranController extends Controller
 
     public function update(PengeluaranEditRequest $request)
     {
+        // $data = $request->validated();
+        // $pengeluaran = Pengeluaran::query()->find($request->id);
+
+        // if ($path = $request->file('dokumentasi_pengeluaran')) {
+        //     if ($pengeluaran->dokumentasi_pengeluaran) {
+        //         Storage::delete("public/$pengeluaran->dokumentasi_pengeluaran");
+        //     }
+
+        //     // Store new file
+        //     $data['dokumentasi_pengeluaran'] = $path;
+        //     $storedPath = $path->storePublicly('', 'public');
+        // }
+
+        // $pengeluaran->fill($data);
+        // $pengeluaran->update($data);
+
+        // return [
+        //     'message' => 'Berhasil update pengeluaran!'
+        // ];
         $data = $request->validated();
         $pengeluaran = Pengeluaran::query()->find($request->id);
 
         if ($path = $request->file('dokumentasi_pengeluaran')) {
-            // Delete old file
-            if ($pengeluaran->file) {
-                Storage::delete("public/$pengeluaran->file");
+            if ($pengeluaran->dokumentasi_pengeluaran) {
+                Storage::delete("storage/{$pengeluaran->dokumentasi_pengeluaran}");
             }
 
             // Store new file
-            $path = $path->storePublicly('', 'public');
-            $data['dokumentasi_pengeluaran'] = $path;
+            $storedPath = $path->storePublicly('', 'public');
+            $data['dokumentasi_pengeluaran'] = $storedPath;
         }
 
         $pengeluaran->update($data);
@@ -107,6 +126,6 @@ class PengeluaranController extends Controller
         return [
             'message' => 'Berhasil update pengeluaran!'
         ];
-    }
+            }
 
     }

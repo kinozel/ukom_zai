@@ -3,42 +3,45 @@
 @section('content')
 
 
-    <div class="container">
-        <div class="row" style="margin-left:-50px;">
-                <div class="col-3">
-                    <a href="{{ url('/jenis_pemasukan') }}" class="text-decoration-none">
-                        <div class="card bg-c-green" style="width:20vw;background: linear-gradient(45deg,#FFB64D,#ffcb80);">
-                            <div class="card-body text-white">
-                                <h1 class="text-right"><i class="bi bi-envelope-open-fill"></i><span
-                                        class="f-right">{{ $jenis_pemasukan }}</span></h1>
-                                <h2>Jenis Pemasukan</h2>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-3" style="margin-left:40px;">
-                    <a href="{{ url('/jenis_pengeluaran') }}" class="text-decoration-none">
-                        <div class="card bg-c-green" style="width:20vw;background: linear-gradient(45deg,#FFB64D,#ffcb80);">
-                            <div class="card-body text-white">
-                                <h1 class="text-right"><i class="bi bi-envelope-open-fill"></i><span
-                                        class="f-right">{{ $jenis_pengeluaran }}</span></h1>
-                                <h2>Jenis Pengeluaran</h2>
-                            </div>
-                        </div>
-                    </a>
-                </div>
 
-                <div class="col-3" style="margin-left:40px;">
-                    <a href="{{ url('/pengeluaran') }}" class="text-decoration-none">
-                        <div class="card bg-c-green" style="width:20vw;background: linear-gradient(45deg,#FFB64D,#ffcb80);">
-                            <div class="card-body text-white">
-                                <h1 class="text-right"><i class="bi bi-envelope-open-fill"></i><span
-                                        class="f-right">{{ $pengeluaran }}</span></h1>
-                                <h2>Pengeluaran</h2>
-                            </div>
+
+    <div class="container">
+
+        <div class="row" style="margin-left:-80px;">
+            <div class="col-3">
+                <a href="{{ url('/jenis_pemasukan') }}" class="text-decoration-none">
+                    <div class="card bg-c-green" style="width:20vw;background: linear-gradient(45deg,#FFB64D,#ffcb80);">
+                        <div class="card-body text-white">
+                            <h1 class="text-right"><i class="bi bi-envelope-open-fill"></i><span
+                                    class="f-right">{{ $jenis_pemasukan }}</span></h1>
+                            <h2>Jenis Pemasukan</h2>
                         </div>
-                    </a>
-                </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-3" style="margin-left:40px;">
+                <a href="{{ url('/jenis_pengeluaran') }}" class="text-decoration-none">
+                    <div class="card bg-c-green" style="width:20vw;background: linear-gradient(45deg,#FFB64D,#ffcb80);">
+                        <div class="card-body text-white">
+                            <h1 class="text-right"><i class="bi bi-envelope-open-fill"></i><span
+                                    class="f-right">{{ $jenis_pengeluaran }}</span></h1>
+                            <h2>Jenis Pengeluaran</h2>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-3" style="margin-left:40px;">
+                <a href="{{ url('/pengeluaran') }}" class="text-decoration-none">
+                    <div class="card bg-c-green" style="width:20vw;background: linear-gradient(45deg,#FFB64D,#ffcb80);">
+                        <div class="card-body text-white">
+                            <h1 class="text-right"><i class="bi bi-envelope-open-fill"></i><span
+                                    class="f-right">{{ $pengeluaran }}</span></h1>
+                            <h2>Pengeluaran</h2>
+                        </div>
+                    </div>
+                </a>
+            </div>
         </div>
 
         <div class="row mt-5">
@@ -65,6 +68,17 @@
                 </a>
             </div>
         </div>
+
+
+        <div class="" style="margin-left:200px; margin-top: 100px;">
+                    <div class="card bg-primary" style="width:30vw;">
+                        <div class="card-body text-white">
+                            <h2>Total Saldo</h2>
+                            <h1 class="text-center"><i class="bi bi-envelope-open-fill"></i><span
+                                    class="f-right">Rp. {{ $totalSaldo }}</span></h1>
+                        </div>
+                    </div>
+            </div>
 
 
         <div class="row" style="margin-top:100px; margin-left: -180px">

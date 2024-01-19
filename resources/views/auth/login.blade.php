@@ -1,4 +1,3 @@
-@extends('layout.app')
 @section('title', 'Login')
 @section('content')
     <section class="vh-80 vw-10">

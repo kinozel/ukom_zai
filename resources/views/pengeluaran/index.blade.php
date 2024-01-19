@@ -6,7 +6,13 @@
 @section('title', 'Data Pengeluaran')
 @section('content')
     <div class="container" style="margin-left: -200px; margin-top:100px; width: 100vw;">
+            <div class="total" style="margin-left: 400px;">
+                <span style="font-size: 30px;color: white; margin-left:100px;">Total Pengeluaran</span>   <br>
+                <span style="font-size: 30px;color: white; margin-left:148px;">Rp. </span>
+                <span style="font-size: 30px;color: white; margin-left:10px;">{{$totalPengeluaran}}</span>   
+            </div>
         <div class="row justify-content-center ">
+
             <div class="col-md">
                 <a class="btn btn-primary me-1" href="{{ url('/dashboard') }}">
                     Kembali</a>
@@ -14,7 +20,7 @@
                     data-bs-target="#tambahkeluar-modal">Tambah</button>
                 <a class="btn btn-danger me-1" target="_blank" href="{{ url('/pengeluaran/cetak') }}">
                     Cetak Data</a>
-                {{-- <span style="font-size: 30px;color: white; margin-left:500px;">Total</span>    --}}
+               
                 {{-- modaltambah --}}
                 <div class="modal fade" id="tambahkeluar-modal" tabindex="-1" aria-labelledby="exampleModalLabel"
                     aria-hidden="true">
@@ -110,76 +116,154 @@
                                                 idPengeluaran="{{ $pgl->id }}">
                                                 Edit
                                             </button>
+                                            <button type="button" class="detailBtn btn btn-primary" data-bs-toggle="modal"
+                                                data-bs-target="#detail-modal-{{ $pgl->id }}"
+                                                idPengeluaran="{{ $pgl->id }}">
+                                                Detail
+                                            </button>
                                             <button class="hapusBtn btn btn-danger">Hapus</button>
                                         </td>
                                     </tr>
 
-                                    <div class="modal fade" id="edit-modal-{{ $pgl->id }}" tabindex="-1"
+
+                                    {{-- MODAL DETAIL --}}
+                                    <div class="modal fade" id="detail-modal-{{ $pgl->id }}" tabindex="-1"
                                         aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-centered">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h1 class="modal-title fs-5" id="exampleModalLabel">EditPengeluaran</h1>
+                                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Detail Pengeluaran
+                                                    </h1>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <form id="edit-pengeluaran-form-{{ $pgl->id }}"
-                                                        enctype="multipart/form-data">
-                                                        <div class="form-group">
-                                                            {{-- @auth
+                                                    <div class="row">
+                                                        <div class="col-6">
+                                                            <label>
+                                                                Jenis Pengeluaran
+                                                            </label>
+                                                            <p>
+                                                                {{ $pgl->jenis_pengeluaran->jenis_pengeluaran }}
+                                                            </p>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-6">
+                                                                <label>
+                                                                    Jumlah Pengeluaran
+                                                                </label>
+                                                                <p>
+                                                                    {{ $pgl->jumlah_pengeluaran }}
+                                                                </p>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-6">
+                                                                    <label>
+                                                                        Tanggal Pemasukan
+                                                                    </label>
+                                                                    <p>
+                                                                        {{ $pgl->tanggal_pengeluaran }}
+                                                                    </p>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-6">
+                                                                        <label>
+                                                                            Dokumentasi Pengeluaran
+                                                                        </label>
+                                                                        <div class="w-100 d-flex flex-column text-align-center">
+                                                                            <img src="{{ asset('/storage/' . $pgl->dokumentasi_pengeluaran) }}"
+                                                                                width="200vw" alt="">
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary"
+                                                                    onclick="clearText()" data-bs-dismiss="modal">
+                                                                   Close
+                                                                </button>
+                                                        
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+
+                                                {{-- MODAL EDIT --}}
+                                                <div class="modal fade" id="edit-modal-{{ $pgl->id }}"
+                                                    tabindex="-1" aria-labelledby="exampleModalLabel"
+                                                    aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Edit
+                                                                    Pengeluaran
+                                                                </h1>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <form id="edit-pengeluaran-form-{{ $pgl->id }}"
+                                                                    enctype="multipart/form-data">
+                                                                    <div class="form-group">
+                                                                        {{-- @auth
                                                        <input type="hidden" name="id_user" class="d-none"
                                                               value="{{ Auth::user()["id"] }}">
                                                    @endauth --}}
-                                                            <label>Jenis Pemasukan</label>
-                                                            <select name="id_jenis_pengeluaran" id="jenisPengeluaran"
-                                                                class="form-select mb-3">
-                                                                @foreach ($jenis_pengeluaran as $jpm)
-                                                                    <option value="{{ $jpm->id }}"
-                                                                        @if ($jpm->id === $pgl->id_jenis_pengeluaran) selected @endif>
-                                                                        {{ $jpm->jenis_pengeluaran }}</option>
-                                                                @endforeach
-                                                            </select>
-                                                            <label>Tanggal Pengeluaran</label>
-                                                            <input type="datetime-local" name="tanggal_pengeluaran"
-                                                                id="tanggalPengeluaran" class="form-control mb-3"
-                                                                value="{{ $pgl->tanggal_pengeluaran }}">
-                                                            <label>Jumlah Pengeluaran</label>
-                                                            <input type="number" min="1000"
-                                                                name="jumlah_pengeluaran" id="jumlahKeluar"
-                                                                class="form-control mb-3"
-                                                                value="{{ $pgl->jumlah_pengeluaran }}">
-                                                            <label class="d-block">Dokumentasi Pengeluaran : </label>
-                                                            <div class="row d-flex align-items-center">
-                                                                <div class="col-3">
-                                                                    <label for="dokumUpload"
-                                                                        class="btn p-1 w-100 btn-outline-success form-control">Upload
-                                                                        Dokumentasi</label>
-                                                                    <input type="file" accept=".png, .jpg, .jpeg"
-                                                                        name="dokumentasi_pengeluaran" id="dokumUpload"
-                                                                        class="d-none">
-                                                                </div>
-                                                                <div class="col p-0">
-                                                                    <p class="dokumName m-0 d-inline-block"></p>
-                                                                </div>
-                                                            </div>
+                                                                        <label>Jenis Pemasukan</label>
+                                                                        <select name="id_jenis_pengeluaran"
+                                                                            id="jenisPengeluaran"
+                                                                            class="form-select mb-3">
+                                                                            @foreach ($jenis_pengeluaran as $jpm)
+                                                                                <option value="{{ $jpm->id }}"
+                                                                                    @if ($jpm->id === $pgl->id_jenis_pengeluaran) selected @endif>
+                                                                                    {{ $jpm->jenis_pengeluaran }}</option>
+                                                                            @endforeach
+                                                                        </select>
+                                                                        <label>Tanggal Pengeluaran</label>
+                                                                        <input type="datetime-local"
+                                                                            name="tanggal_pengeluaran"
+                                                                            id="tanggalPengeluaran"
+                                                                            class="form-control mb-3"
+                                                                            value="{{ $pgl->tanggal_pengeluaran }}">
+                                                                        <label>Jumlah Pengeluaran</label>
+                                                                        <input type="number" min="1000"
+                                                                            name="jumlah_pengeluaran" id="jumlahKeluar"
+                                                                            class="form-control mb-3"
+                                                                            value="{{ $pgl->jumlah_pengeluaran }}">
+                                                                        <label class="d-block">Dokumentasi Pengeluaran :
+                                                                        </label>
+                                                                        <div class="row d-flex align-items-center">
+                                                                            <div class="col-3">
+                                                                                <label for="dokumUpload"
+                                                                                    class="btn p-1 w-100 btn-outline-success form-control">Upload
+                                                                                    Dokumentasi</label>
+                                                                                <input type="file"
+                                                                                    name="dokumentasi_pengeluaran"
+                                                                                    id="dokumUpload" accept="image/*"
+                                                                                    class="d-none">
+                                                                            </div>
+                                                                            <div class="col p-0">
+                                                                                <p class="dokumName m-0 d-inline-block">
+                                                                                </p>
+                                                                            </div>
+                                                                        </div>
 
-                                                            @csrf
+                                                                        @csrf
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary"
+                                                                    onclick="clearText()" data-bs-dismiss="modal">
+                                                                    Cancel
+                                                                </button>
+                                                                <button type="submit" class="btn btn-primary edit-btn"
+                                                                    form="edit-pengeluaran-form-{{ $pgl->id }}">
+                                                                    Edit
+                                                                </button>
+                                                            </div>
                                                         </div>
-                                                    </form>
+                                                    </div>
                                                 </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary"
-                                                        onclick="clearText()" data-bs-dismiss="modal">
-                                                        Cancel
-                                                    </button>
-                                                    <button type="submit" class="btn btn-primary edit-btn"
-                                                        form=
-                                                   "edit-pengeluaran-form-{{ $pgl->id }}">
-                                                        Edit
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
                                 @endforeach
                             </tbody>
                         </table>
@@ -198,14 +282,15 @@
         <script type="module">
             $('.table').DataTable();
             $('input[type=file]').on('change', function() {
-                const fileName = $(this).val().replace(/.*(\/|\\)/, '');
-                $(`.dokumName`).text(fileName);
+                const dokumName = $(this).val().replace(/.*(\/|\\)/, '');
+                $(`.dokumName`).text(dokumName);
+                ///console.log(this.value)
             })
 
             $('#tambahkeluar-form').on('submit', function(e) {
                 e.preventDefault();
                 let data = new FormData(e.target);
-                // console.log(Object.fromEntries(data))
+                console.log(Object.fromEntries(data))
                 axios.post('/pengeluaran/tambah', data, {
                         'Content-Type': 'multipart/form-data'
                     })
@@ -230,8 +315,8 @@
                 swal.fire({
                     title: "Apakah anda ingin menghapus data ini?",
                     showCancelButton: true,
-                    confirmButtonText: 'Setuju',
-                    cancelButtonText: `Batal`,
+                    confirmButtonText: 'Gas',
+                    cancelButtonText: `Ora Jadi Dah`,
                     confirmButtonColor: 'red'
                 }).then((result) => {
                     if (result.isConfirmed) {
@@ -256,15 +341,21 @@
             })
 
 
+
             ///edit
             $('.editBtn').on('click', function(e) {
+                $('input[type=file]').trigger('change');
                 e.preventDefault();
                 let idPengeluaran = $(this).attr('idPengeluaran');
                 $(`#edit-pengeluaran-form-${idPengeluaran}`).on('submit', function(e) {
                     e.preventDefault();
                     let data = new FormData(this);
                     console.log(Object.fromEntries(data));
-                    axios.post(`/pengeluaran/${idPengeluaran}/edit`, data)
+                    axios.post(`/pengeluaran/${idPengeluaran}/edit`, data, {
+                            headers: {
+                                'Content-Type': 'multipart/form-data'
+                            }
+                        })
                         .then(() => {
                             $(`#edit-modal-${idPengeluaran}`).css('display', 'none')
                             swal.fire('Berhasil edit data!', '', 'success').then(function() {

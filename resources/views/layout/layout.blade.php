@@ -79,7 +79,7 @@
         }
 
         .menu span {
-            font-size: 24px;
+            font-size: 24px;    
             font-family: 'Fredoka';
             font-weight: 400;
             word-wrap: break-word;
@@ -145,7 +145,7 @@
                     <a class="btn logout btn-danger" style="margin-left: 520px; margin-top:-30px;" href="{{ route('logout')}}">{{ __('Logout') }}</a>
                 </div>      
                 <div class="mt-3">
-                <span style="font-size: 30px;color: #FBAF01; margin-left:-290px; padding-bottom: -100px;" > {{Auth::user()->username}}</span>
+                <span style="font-size: 30px;color: #FBAF01; margin-left:-340px; padding-bottom: -100px;" > {{Auth::user()->username}}</span>
                 </div>      
             </div>
             

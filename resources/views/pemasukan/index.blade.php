@@ -2,12 +2,18 @@
 @section('title', 'Manajemen Pemasukan')
 @section('content')
     <div class="container" style="margin-left: -200px; margin-top:100px; width: 100vw;">
-        <div class="row justify-content-center ">
-            <div class="total">
-                <span style="font-size: 30px;color: white; margin-left:500px;">Total Pemasukan</span><br>
-                {{-- <span style="font-size: 30px;color: white; margin-left:500px;"><?= $totalpemasukan ?></span> --}}
-
+    <div class="total" style="margin-left: 400px;">
+                <span style="font-size: 30px;color: white; margin-left:100px;">Total Pemasukan</span>   <br>
+                <span style="font-size: 30px;color: white; margin-left:100px;">Rp. </span>
+                <span style="font-size: 30px;color: white; margin-left:10px;">{{$totalPemasukan}}</span>   
             </div>
+        <div class="row justify-content-center ">
+            {{-- <div class="total">
+                <span style="font-size: 30px;color: white; margin-left:500px;">Total Pemasukan</span><br>
+                <span style="font-size: 30px;color: white; margin-left:540px;">Rp. </span>
+                <span style="font-size: 30px;color: white; margin-left:px;">{{$totalPemasukan}}</span>
+
+            </div> --}}
             <div class="col-md">
                 <a class="btn btn-primary me-1" href="{{ url('/dashboard') }}">
                     Kembali</a>
@@ -15,7 +21,7 @@
                     data-bs-target="#tambahmasuk-modal">Tambah</button>
                 <a class="btn btn-primary me-1" href="{{ url('/pemasukan/cetakpdf') }}">
                     Cetak Pdf</a>
-
+                
                 {{-- modaltambah --}}
                 <div class="modal fade" id="tambahmasuk-modal" tabindex="-1" aria-labelledby="exampleModalLabel"
                     aria-hidden="true">
@@ -45,7 +51,7 @@
                                         <input type="datetime-local" name="tanggal_pemasukan" id="tanggalMasuk"
                                             class="form-control mb-3">
                                         <label>Deskripsi</label>
-                                        <textarea name="deskripsi" class="form-control mb-3" rows="7" placeholder="Isi Ringkasan" style="resize: none"></textarea>
+                                        <textarea name="deskripsi" class="form-control mb-3" rows="7" placeholder="Isi Deskripsi" style="resize: none"></textarea>
                                         <label class="d-block"></label>
                                         <div class="row d-flex align-items-center">
                                             <div class="col-3">
@@ -106,10 +112,67 @@
                                                 idPemasukan="{{ $pmsk->id }}">
                                                 Edit
                                             </button>
+                                                <button type="button" class="detailBtn btn btn-primary" data-bs-toggle="modal"
+                                                data-bs-target="#detail-modal-{{ $pmsk->id }}"
+                                                idPemasukan="{{ $pmsk->id }}">
+                                                Detail
+                                            </button>
                                             <button class="hapusBtn btn btn-danger">Hapus</button>
                                         </td>
                                     </tr>
 
+
+                                    {{-- Modal Detail --}}
+                                    <div class="modal fade" id="detail-modal-{{ $pmsk->id }}" tabindex="-1"
+                                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Detail Pengeluaran
+                                                    </h1>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="row">
+                                                        <div class="col-6">
+                                                            <label>
+                                                                Jenis Pengeluaran
+                                                            </label>
+                                                            <p>
+                                                                {{ $pmsk->jenis->jenis_pemasukan }}
+                                                            </p>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-6">
+                                                                <label>
+                                                                    Jumlah Pengeluaran
+                                                                </label>
+                                                                <p>
+                                                                    {{ $pmsk->jumlah_pemasukan }}
+                                                                </p>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-6">
+                                                                    <label>
+                                                                        Tanggal Pemasukan
+                                                                    </label>
+                                                                    <p>
+                                                                        {{ $pmsk->tanggal_pemasukan }}
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary"
+                                                                    onclick="clearText()" data-bs-dismiss="modal">
+                                                                   Close
+                                                                </button>
+                                                        
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                    {{-- Modal Edit --}}
                                     <div class="modal fade" id="edit-modal-{{ $pmsk->id }}" tabindex="-1"
                                         aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-centered">
