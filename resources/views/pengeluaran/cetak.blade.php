@@ -17,7 +17,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
-    {{-- <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet" type="text/css"> <!-- Tambahkan Bootstrap CSS --> --}}
+    {{-- <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet" type="text/css">
+    <!-- Tambahkan Bootstrap CSS --> --}}
     <link href="{{ asset('css/style.css') }}" rel="stylesheet" type="text/css">
 
 
@@ -26,6 +27,7 @@
             padding: 0;
             margin: 0;
         }
+
     </style>
 </head>
 
@@ -42,22 +44,21 @@
                     <th>Dokumentasi</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody>      
                 <?php
                 $no = 1;
                 ?>
                 @foreach ($pengeluaran as $pgl)
-                    <tr idPengeluaran="{{ $pgl->id }}">
-                        <td class="col-1">{{ $no++ }}</td>
-                        <td class="col-1">{{ $pgl->jenis_pengeluaran->jenis_pengeluaran }}</td>
-                        <td class="col-2">{{ $pgl->jumlah_pengeluaran }}</td>
-                        <td class="col-1">{{ $pgl->tanggal_pengeluaran }}</td>
-                        <td class="col-1">
-                            <div class="w-100 d-flex flex-column">
-                                <img src="{{ asset('/storage/' . $pgl->dokumentasi_pengeluaran) }}" width="100vw"
-                                    alt="">
-                            </div>
-                        </td>
+                <tr idPengeluaran="{{ $pgl->id }}">
+                    <td class="col-1">{{ $no++ }}</td>
+                    <td class="col-1">{{ $pgl->jenis_pengeluaran->jenis_pengeluaran }}</td>
+                    <td class="col-2">{{ $pgl->jumlah_pengeluaran }}</td>
+                    <td class="col-1">{{ $pgl->tanggal_pengeluaran }}</td>
+                    <td class="col-1">
+                        <div class="w-100 d-flex flex-column">
+                            <img src="{{ asset('/storage/' . $pgl->dokumentasi_pengeluaran) }}" width="100vw" alt="">
+                        </div>
+                    </td>
     </div>
     </div>
     @endforeach
@@ -67,6 +68,7 @@
     @yield('footer')
     <script>
         window.print();
+
     </script>
 </body>
 

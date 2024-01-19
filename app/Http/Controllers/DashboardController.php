@@ -30,15 +30,4 @@ class DashboardController extends Controller
 
         return view('dashboard.index', $data);
     }
-    public function cetakpengeluaran()
-    {
-        $data = [
-            'pengeluaran'=> Pengeluaran::with('jenis_pengeluaran')->orderByDesc('tanggal_pengeluaran')->get(),
-            'jenis_pengeluaran'=> JenisPengeluaran::all(),
-        ];
-
-        // return $data;
-
-        return view('pengeluaran.cetak', $data);
-    } 
 }

@@ -144,7 +144,7 @@
                     })
                 })
                 .catch(({response}) => {
-                    swal.fire('Gagal tambah data!', `<strong class="text-danger">${response.data.message}</strong>`,
+                    swal.fire('Gagal tambah data!', `<strong class="text-danger">Username Sudah Ada</strong>`,
                         'warning');
                 });
         })
@@ -195,7 +195,7 @@
                         })
                     })
                     .catch(({response}) => {
-                    swal.fire('Gagal tambah data!', `<strong class="text-danger">${response.data.message}</strong>`,
+                    swal.fire('Gagal tambah data!', `<strong class="text-danger">Username Sudah Ada</strong>`,
                         'warning');
                 });
             })

@@ -8,6 +8,7 @@ use App\Models\JenisPemasukan;
 use Illuminate\Http\JsonResponse;
 use App\Models\Pemasukan;
 use Illuminate\Http\Request;
+use PDF;
 
 class PemasukanController extends Controller
 {
@@ -25,6 +26,14 @@ class PemasukanController extends Controller
 
         return view('pemasukan.index', $data);
     }
+    // public function cetakpemasukan2(){
+    //     $pemasukan = Pemasukan::get();
+
+    //     $pdf = PDF::loadView('pemasukan.cetak2',compact('pemasukan'));
+    //     $pdf->setPaper('A4','potrait');
+
+    //     return $pdf->download('cetakpemasukan2.pdf');
+    // }
     public function cetakpemasukan()
     {
         $data = [

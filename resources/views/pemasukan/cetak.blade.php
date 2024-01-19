@@ -17,7 +17,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
-    {{-- <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet" type="text/css"> <!-- Tambahkan Bootstrap CSS --> --}}
+    {{-- <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet" type="text/css"> Tambahkan Bootstrap CSS --}}
     <link href="{{ asset('css/style.css') }}" rel="stylesheet" type="text/css">
 
 

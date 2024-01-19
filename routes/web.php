@@ -27,6 +27,7 @@ use App\Http\Controllers\PengeluaranController;
 |
 */
 
+
 Route::get('/', function () {
     return redirect('/dashboard');
 });
@@ -45,12 +46,17 @@ Route::get('/login', [AuthController::class, 'index'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
+Route::get('/cetakpemasukan2', [PemasukanController::class, 'cetakpemasukan2'])->name('cetakpemasukan2');
+
 
 Route::prefix('/dashboard')->middleware('auth')->group(function () {
 
 Route::controller(DashboardController::class)->group(function () {
     Route::get('/', [DashboardController::class, 'index']);
-    Route::get('/cetak', [PengeluaranController::class, 'cetakpengeluaran']);
+    Route::get('/cetakpengeluaran', [PengeluaranController::class, 'cetakpengeluaran']);
+    Route::get('/cetakpemasukan', [PemasukanController::class, 'cetakpemasukan']);
+
+
 
 
     
@@ -64,6 +70,8 @@ Route::middleware(['role:dkm,superadmin'])->group(function () {
         Route::post('/tambah', [PemasukanController::class, 'store']);
         Route::post('/{id}/edit', [PemasukanController::class, 'update']);
         Route::get('/cetak', [PemasukanController::class, 'cetakpemasukan']);
+        // Route::get('/cetakpemasukan2', [PemasukanController::class, 'cetakpemasukan2']);
+
         Route::delete('/{id}/hapus', [PemasukanController::class, 'delete']);
     });
 

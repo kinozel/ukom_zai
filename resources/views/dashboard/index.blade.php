@@ -66,7 +66,7 @@
                 </div>
             </a>
         </div>
-@if(auth()->user()->role == 'superadmin')
+        @if(auth()->user()->role == 'superadmin')
         <div class="col-3" style="margin-left:50px;">
             <a href="{{url('/user')}}" class="text-decoration-none">
                 <div class="card bg-c-green" style="width:20vw;background: linear-gradient(45deg,#FFB64D,#ffcb80);">
@@ -78,14 +78,18 @@
                 </div>
             </a>
         </div>
-    </div>
-    @endif
+        @endif
 
+    </div>
+
+    @endif
 
 
     <div class="row" style="margin-top:100px; margin-left: -200px">
         <h4 style="color: rgba(188.06, 188.06, 188.06, 0.79);">Data Pemasukan</h4>
         <div class="col">
+        <a class="btn btn-danger me-1" target="_blank" href="{{ url('/dashboard/cetakpemasukan') }}">
+                    Cetak Data</a>
             <div class="card mt-2" style="width:75vw;">
                 <div class="card-body">
                     <table class="table table-bordered table-hovered DataTable" style="width: 73vw;">
@@ -118,15 +122,15 @@
         </div>
 
     </div>
-</div>
-@endif
-@if(auth()->user()->role == 'jamaah')
+    @if(auth()->user()->role == 'jamaah')
+
+
 
 <div class="row" style="margin-top:100px; margin-left: -200px">
     <h4 style="color: rgba(188.06, 188.06, 188.06, 0.79);">Data Pengeluaran</h4>
     <div class="col">
-    <a class="btn btn-danger me-1" target="_blank" href="{{ url('/dashboard/cetak') }}">
-                    Cetak Data</a>
+        <a class="btn btn-danger me-1" target="_blank" href="{{ url('/dashboard/cetakpengeluaran') }}">
+            Cetak Data</a>
         <div class="card mt-2" style="width:75vw;">
             <div class="card-body">
                 <table class="table table-bordered table-hovered DataTable" style="width: 73vw;">
@@ -149,6 +153,12 @@
                             <td class="col-1">{{$pgl->jenis_pengeluaran->jenis_pengeluaran}}</td>
                             <td class="col-2">{{$pgl->jumlah_pengeluaran}}</td>
                             <td class="col-1">{{$pgl->tanggal_pengeluaran}}</td>
+                            <td class="col-5">
+                                <div class="w-100 d-flex flex-column">
+                                    <img src="{{asset('/storage/'.$pgl->dokumentasi_pengeluaran)}}" width="100vw"
+                                        alt="">
+                                </div>
+                            </td>
                         </tr>
                         @endforeach
                     </tbody>
@@ -158,11 +168,11 @@
     </div>
 
 </div>
-</div>
 @endif
-
-
 </div>
+
+
+
 
 
 @endsection

@@ -10,6 +10,7 @@
                 data-bs-target="#tambahmasuk-modal">Tambah</button>
                 <a class="btn btn-danger me-1" target="_blank" href="{{ url('/pemasukan/cetak') }}">
                     Cetak Data</a>
+                    <!-- <a href="{{url('/pemasukan/cetakpemasukan2')}}" target="_blank">Cetak PDF</a> -->
 
             {{-- modaltambah --}}
             <div class="modal fade" id="tambahmasuk-modal" tabindex="-1" aria-labelledby="exampleModalLabel"
